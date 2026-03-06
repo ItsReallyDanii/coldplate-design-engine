@@ -73,7 +73,7 @@
   },
   "solver_info": {
     "thermal_converged": true,
-    "thermal_solve_time_s": 98.75048756599426,
+    "thermal_solve_time_s": 123.1065194606781,
     "thermal_residual": 0.3649308488715733,
     "flow_converged": true
   }

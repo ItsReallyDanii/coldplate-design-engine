@@ -4,7 +4,7 @@
     {
       "candidate_id": "candidate_02_diamond_2d_s1045",
       "thermal_converged": true,
-      "thermal_solve_time_s": 98.75048756599426,
+      "thermal_solve_time_s": 123.1065194606781,
       "thermal_resistance_k_w": 1.0296098572195402,
       "T_max_c": 50.74024643048851,
       "T_mean_c": 26.807937052989864,
@@ -13,7 +13,7 @@
     {
       "candidate_id": "candidate_01_diamond_2d_s1127",
       "thermal_converged": true,
-      "thermal_solve_time_s": 99.60624170303345,
+      "thermal_solve_time_s": 123.80517601966858,
       "thermal_resistance_k_w": 1.0349706405416004,
       "T_max_c": 50.874266013540016,
       "T_mean_c": 26.853233903761247,

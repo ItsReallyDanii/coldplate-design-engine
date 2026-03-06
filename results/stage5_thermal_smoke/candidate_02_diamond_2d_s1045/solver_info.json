@@ -1,6 +1,6 @@
 {
   "converged": true,
-  "solve_time_s": 98.75048756599426,
+  "solve_time_s": 123.1065194606781,
   "residual": 0.3649308488715733,
   "solver": "direct_sparse",
   "matrix_shape": [

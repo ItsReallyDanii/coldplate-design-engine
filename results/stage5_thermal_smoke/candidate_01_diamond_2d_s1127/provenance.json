@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-03-06T10:58:57.606202+00:00",
+  "timestamp": "2026-03-06T11:20:00.026351+00:00",
   "stage": "stage5_thermal",
   "schema_version": "1.0",
   "candidate_id": "candidate_01_diamond_2d_s1127",
-  "git_sha": "4372428316ddb5f04f28ac65cd96660191ffdfb6",
+  "git_sha": "9b463feacbf77e2fc9f12f88df6481bb301a2444",
   "stage4_source": {
     "candidate_id": "candidate_01_diamond_2d_s1127",
     "provenance": {
@@ -269,7 +269,7 @@
   },
   "thermal_simulation": {
     "converged": true,
-    "solve_time_s": 99.60624170303345,
+    "solve_time_s": 123.80517601966858,
     "residual": 0.369108921890917,
     "solver": "direct_sparse"
   },
