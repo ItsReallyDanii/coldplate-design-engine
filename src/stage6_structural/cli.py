@@ -59,7 +59,10 @@ def reconstruct_volume_from_stage3(stage3_metadata: Dict[str, Any]) -> np.ndarra
     
     porosity = validation.get('porosity', 0.5)
     
-    print(f"  WARNING: Actual geometry not found at {raw_path}, using synthetic volume")
+    if raw_path:
+        print(f"  WARNING: Actual geometry file not found at {raw_path}, using synthetic volume")
+    else:
+        print(f"  WARNING: Actual geometry path not found in metadata, using synthetic volume")
     volume = np.random.random((nx, ny, nz)) < porosity
     
     return volume
