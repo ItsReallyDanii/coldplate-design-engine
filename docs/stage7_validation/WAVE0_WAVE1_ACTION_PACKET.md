@@ -286,23 +286,23 @@ closed before the specimen arrives.
 
 | Item ID | Wave | Owner Type | Status | Blocking downstream |
 |---------|------|------------|--------|---------------------|
-| OI-01 | 0 | docs | OPEN | OI-02; any test data file |
-| OI-02 | 0 | docs | OPEN | Stage 8 provenance |
-| OI-03 | 0 | docs | OPEN | OI-05 (AM vendor order) |
-| OI-04 | 0 | docs | OPEN | OI-05 (AM vendor order) |
-| OI-17 | 0 | docs | OPEN | OI-18 (TIM procurement); OI-21 (fixture assembly) |
-| OI-27 | 0 | docs | OPEN | Campaign traceability |
-| OI-05 | 1 | procurement | OPEN | OI-06, OI-07, OI-08, OI-09, OI-10, OI-21 (controls test date) |
+| OI-01 | 0 | docs | **CLOSED** — `simulation_reference_candidate_02.json` committed with `simulation_domain_mm=[2.0,2.0,2.0]`, `total_power_w=4.0`, `schema_version="1.1.0"`; SHA 800bba1d | OI-02; any test data file |
+| OI-02 | 0 | docs | **CLOSED** — `pipeline_git_sha.txt` populated with 40-char SHA `800bba1d1a1911e32fa0f053771068ebce83c970`; JSON `pipeline_git_sha` field matches | Stage 8 provenance |
+| OI-03 | 0 | docs | **CLOSED** — solid-phase watertight STL generated (0 open edges, 0 non-manifold edges, positive volume 53.70 mm³); `stl_export_manifest.json` committed; STL excluded from git by `.gitignore: *.stl` — regenerate locally via `python src/stage3_geometry/cli.py smoke` + solid-phase export script documented in manifest | OI-05 (AM vendor order) |
+| OI-04 | 0 | docs | **CLOSED** — `docs/stage7_validation/AM_BUILD_SPECIFICATION.md` committed; all six required sections present (material, min feature, build orientation, support strategy, post-processing, acceptance criteria); no vendor laser parameters filled in; powder evacuation requirement stated | OI-05 (AM vendor order) |
+| OI-17 | 0 | docs | **CLOSED** — `PREFLIGHT_VERIFICATION.md` §2 populated with Shin-Etsu X-23-7921-5 paste, k=6.0 W/(m·K), BLT=0.10 mm, R_contact=0.17 K·cm²/W; correction procedure and STAGE7-AUD-001 W-4 cross-reference included; lot number field present (fill on receipt) | OI-18 (TIM procurement); OI-21 (fixture assembly) |
+| OI-27 | 0 | docs | **CLOSED** — `results/stage7_benchtop/README.md` updated with both specimen IDs (S7-C02-001, S7-C02-002), target test date field (TBD), and all nine required companion documents plus AM build specification | Campaign traceability |
+| OI-05 | 1 | procurement | OPEN — requires OI-03 STL and OI-04 build spec (both now closed); ready for RFQ | OI-06, OI-07, OI-08, OI-09, OI-10, OI-21 (controls test date) |
 | OI-11 | 1 | procurement | OPEN | OI-16 (calibration records) |
 | OI-12 | 1 | procurement | OPEN | OI-16 (calibration records) |
 | OI-13 | 1 | procurement | OPEN | OI-16 (calibration records); T_amb_C column in data |
 | OI-14 | 1 | procurement | OPEN | OI-16 (calibration records) |
 | OI-15 | 1 | procurement | OPEN | OI-25 (DAQ software config); OI-16 |
-| OI-18 | 1 | procurement | OPEN | OI-21 (fixture assembly) |
+| OI-18 | 1 | procurement | OPEN — requires OI-17 (now closed); TIM type selected as Shin-Etsu X-23-7921-5; ready to order | OI-21 (fixture assembly) |
 | OI-20 | 1 | procurement | OPEN | Coolant flow; ΔP target; must be revalidated after OI-09 |
 
-All 14 items in this packet are currently OPEN.  No items in Wave 0 or Wave 1
-have been closed as of the date of this document.
+**Wave 0 status:** All six Wave 0 items (OI-01, OI-02, OI-03, OI-04, OI-17, OI-27) are CLOSED.
+Wave 1 procurement items remain OPEN; OI-05 and OI-18 gates are now cleared by Wave 0 closures.
 
 ---
 
@@ -326,5 +326,6 @@ appear in every run summary JSON.
 | Version | Date | Change |
 |---------|------|--------|
 | 1.0 | 2026-03-06 | Initial release |
+| 1.1 | 2026-03-06 | Wave 0 closure pass: OI-01 through OI-04, OI-17, OI-27 closed; Section 6 updated with closure evidence |
 
 **End of document.**

@@ -41,6 +41,6 @@
   },
   "stage5_source_path": "results/stage5_thermal_smoke/candidate_02_diamond_2d_s1045/thermal_metrics.json",
   "stage6_source_path": "results/stage6_structural_smoke/candidate_02_diamond_2d_s1045/structural_metrics.json",
-  "pipeline_git_sha": "PLACEHOLDER — replace with actual git SHA before fabrication begins",
+  "pipeline_git_sha": "800bba1d1a1911e32fa0f053771068ebce83c970",
   "note_pipeline_sha": "Record the git SHA at the time this simulation reference is locked. All bench comparisons must reference this SHA. See pipeline_git_sha.txt in this directory."
 }
