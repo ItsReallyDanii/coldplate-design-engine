@@ -38,3 +38,16 @@
 - All evaluations will use matched constraints: identical heat load, footprint, inlet/outlet locations, and pressure-drop budget across baselines and candidates.
 - Parameter sweeps, not single-point baselines, will be used to map performance trends before any claims are made.
 - No feature dimensions, flow rates, or pressure targets are locked at Stage 0; they will be set using literature-backed ranges at Stage 0.5.
+
+## Tracked design hypothesis
+
+**Spatially varying porosity / functionally graded internal structures** are tracked as a candidate design direction under investigation. This hypothesis proposes that non-uniform thermal loads (e.g., localized hotspots) and mechanical constraints may be addressed by grading internal structure porosity or feature density across the die footprint, rather than using a uniform lattice or channel spacing throughout.
+
+This approach is **not yet validated**. It is a candidate method that will be evaluated against uniform and segmented TPMS baselines when Stage 2-4 simulation results become available. The hypothesis does not replace or supersede the target statement, which remains geometry-agnostic.
+
+### What is NOT yet claimed
+
+- No quantitative performance uplift from graded structures has been demonstrated.
+- No claim is made that graded structures outperform segmented or zoned TPMS lattices under realistic constraints.
+- No claim is made regarding manufacturability, powder evacuation, or flow stability of graded internal structures.
+- No claim is made that graded structures are a superior or preferable design solution; they are one candidate approach under test.
