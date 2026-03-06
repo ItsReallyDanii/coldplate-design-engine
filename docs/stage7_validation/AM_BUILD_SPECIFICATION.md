@@ -144,7 +144,7 @@ acceptable.
 
 1. Specimen serial number (S7-C02-001 or S7-C02-002) permanently marked on
    external surface (laser engraving or stamping).
-2. External dimensions within ±0.1 mm of nominal 5.0 × 5.0 × 5.0 mm
+2. External dimensions within ±0.2 mm of nominal 5.0 × 5.0 × 5.0 mm
    (vendor to measure and report).
 3. Powder evacuation confirmed in writing by the vendor (see §(d)).
 4. Certificate of conformance for T6 heat treatment supplied for each specimen.

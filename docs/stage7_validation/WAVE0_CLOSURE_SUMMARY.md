@@ -116,7 +116,7 @@ are not yet present.
 | Clamp pressure | 50 psi uniform face pressure |
 
 **Audit cross-references present:**
-- STAGE7-AUD-001 W-4 note with explicit calculation: 0.5 K·cm²/W / 4 mm² = 12.5 K/W
+- STAGE7-AUD-001 W-4 note with explicit calculation: 0.5 K·cm²/W / 0.04 cm² = 12.5 K/W
 - Selected TIM contribution: 0.17 / 0.04 cm² = **4.25 K/W**
 - **Explicit correction rule:** R_th_corrected = R_th_measured − R_contact_TIM;
   apply acceptance band to corrected R_th only

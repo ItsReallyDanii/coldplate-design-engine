@@ -69,10 +69,10 @@ run sheet.
 
 > **Why this matters (STAGE7-AUD-001 W-4):** TIM contact resistance adds
 > directly to measured R_th and is not modelled in the Stage 5 simulation.
-> At the 4 mm² heater footprint (5 mm × 5 mm specimen face ≈ 25 mm² total
-> contact area; note: heater footprint is 2 mm × 2 mm = 4 mm²), a contact
-> resistance of 0.5 K·cm²/W would add R_contact = 0.5 K·cm²/W / 4 mm²
-> = 0.5 × 10⁻⁴ m²·K/W / 4×10⁻⁶ m² = 12.5 K/W — comparable to the
+> The relevant area is the **heater footprint** (2 mm × 2 mm = 4 mm²
+> = 0.04 cm²), not the full specimen contact face.  A contact resistance
+> of 0.5 K·cm²/W at this footprint adds R_contact = 0.5 K·cm²/W / 0.04 cm²
+> = 12.5 K/W — comparable to the
 > simulation R_th of 11.27 K/W.  The selected TIM (Shin-Etsu X-23-7921-5)
 > has an expected contact resistance of 0.17 K·cm²/W, contributing
 > R_contact = 0.17 × 10⁻⁴ / 4×10⁻⁶ ≈ 4.25 K/W at the 4 mm² footprint.
