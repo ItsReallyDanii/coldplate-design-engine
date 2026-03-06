@@ -34,13 +34,13 @@
       "pressure_drop_pa": 1000.0,
       "inlet_pressure_pa": 102325.0,
       "outlet_pressure_pa": 101325.0,
-      "label": "SIMULATED",
+      "label": "FLOW_SIMULATED",
       "method": "pressure_poisson_solver"
     },
     "flow_rate": {
       "flow_rate_m3_s": 0.001800408331125899,
       "flow_rate_lpm": 108.02449986755394,
-      "label": "SIMULATED",
+      "label": "FLOW_SIMULATED",
       "method": "velocity_integration"
     },
     "velocity_statistics": {
@@ -49,18 +49,18 @@
       "v_min_m_s": 1.7520156157665343,
       "v_std_m_s": 40.68649068410323,
       "vz_mean_m_s": 140.57367191211605,
-      "label": "SIMULATED",
+      "label": "FLOW_SIMULATED",
       "method": "velocity_field_statistics"
     },
     "flow_uniformity": {
       "coefficient_of_variation": 0.23617736756683477,
       "maldistribution_factor": 1.887476049644459,
-      "label": "SIMULATED",
+      "label": "FLOW_SIMULATED",
       "method": "velocity_distribution_analysis"
     },
     "hydraulic_resistance": {
       "hydraulic_resistance_pa_s_m3": 555429.556013353,
-      "label": "SIMULATED",
+      "label": "FLOW_SIMULATED",
       "method": "resistance_from_dp_and_q"
     }
   },
@@ -73,7 +73,7 @@
   },
   "solver_info": {
     "thermal_converged": true,
-    "thermal_solve_time_s": 98.75048756599426,
+    "thermal_solve_time_s": 135.4897997379303,
     "thermal_residual": 0.3649308488715733,
     "flow_converged": true
   }

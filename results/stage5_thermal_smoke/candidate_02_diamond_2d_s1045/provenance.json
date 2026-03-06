@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-03-06T10:57:17.863029+00:00",
+  "timestamp": "2026-03-06T11:34:00.649148+00:00",
   "stage": "stage5_thermal",
   "schema_version": "1.0",
   "candidate_id": "candidate_02_diamond_2d_s1045",
-  "git_sha": "4372428316ddb5f04f28ac65cd96660191ffdfb6",
+  "git_sha": "49741f141bd43d380f175d9ff6e96098f3bc0532",
   "stage4_source": {
     "candidate_id": "candidate_02_diamond_2d_s1045",
     "provenance": {
@@ -219,13 +219,13 @@
           "pressure_drop_pa": 1000.0,
           "inlet_pressure_pa": 102325.0,
           "outlet_pressure_pa": 101325.0,
-          "label": "SIMULATED",
+          "label": "FLOW_SIMULATED",
           "method": "pressure_poisson_solver"
         },
         "flow_rate": {
           "flow_rate_m3_s": 0.001800408331125899,
           "flow_rate_lpm": 108.02449986755394,
-          "label": "SIMULATED",
+          "label": "FLOW_SIMULATED",
           "method": "velocity_integration"
         },
         "velocity_statistics": {
@@ -234,18 +234,18 @@
           "v_min_m_s": 1.7520156157665343,
           "v_std_m_s": 40.68649068410323,
           "vz_mean_m_s": 140.57367191211605,
-          "label": "SIMULATED",
+          "label": "FLOW_SIMULATED",
           "method": "velocity_field_statistics"
         },
         "flow_uniformity": {
           "coefficient_of_variation": 0.23617736756683477,
           "maldistribution_factor": 1.887476049644459,
-          "label": "SIMULATED",
+          "label": "FLOW_SIMULATED",
           "method": "velocity_distribution_analysis"
         },
         "hydraulic_resistance": {
           "hydraulic_resistance_pa_s_m3": 555429.556013353,
-          "label": "SIMULATED",
+          "label": "FLOW_SIMULATED",
           "method": "resistance_from_dp_and_q"
         }
       },
@@ -269,7 +269,7 @@
   },
   "thermal_simulation": {
     "converged": true,
-    "solve_time_s": 98.75048756599426,
+    "solve_time_s": 135.4897997379303,
     "residual": 0.3649308488715733,
     "solver": "direct_sparse"
   },

@@ -201,6 +201,12 @@ def compute_all_thermal_metrics(
     stage4_metrics = candidate['metrics']
     flow_simulated = stage4_metrics.get('simulated_quantities', {})
     
+    # Relabel Stage 4 quantities from SIMULATED to FLOW_SIMULATED
+    for key, value in flow_simulated.items():
+        if isinstance(value, dict) and 'label' in value:
+            if value['label'] == 'SIMULATED':
+                value['label'] = 'FLOW_SIMULATED'
+    
     # Carry forward geometric quantities (GEOMETRIC)
     geometric = stage4_metrics.get('geometric_quantities', {})
     

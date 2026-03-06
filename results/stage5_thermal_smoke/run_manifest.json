@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-06T10:58:57.613233+00:00",
+  "timestamp": "2026-03-06T11:36:17.657031+00:00",
   "stage": "stage5_thermal",
-  "git_sha": "4372428316ddb5f04f28ac65cd96660191ffdfb6",
+  "git_sha": "49741f141bd43d380f175d9ff6e96098f3bc0532",
   "config": {
     "top_k": 2,
     "family_filter": null
