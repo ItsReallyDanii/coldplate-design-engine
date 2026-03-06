@@ -1,0 +1,80 @@
+{
+  "thermal_simulated_quantities": {
+    "temperature_statistics": {
+      "T_mean_c": 26.807937052989864,
+      "T_max_c": 50.74024643048851,
+      "T_min_c": 25.00000123880674,
+      "T_std_c": 3.218419084910057,
+      "T_range_c": 25.740245191681772,
+      "T_solid_mean_c": 28.22778488690056,
+      "T_solid_max_c": 39.27267718102672,
+      "T_solid_min_c": 25.363392230659425,
+      "T_fluid_mean_c": 25.710217057931423,
+      "T_fluid_max_c": 50.74024643048851,
+      "T_fluid_min_c": 25.00000123880674,
+      "label": "SIMULATED",
+      "method": "thermal_field_statistics"
+    },
+    "thermal_resistance": {
+      "thermal_resistance_k_w": 1.0296098572195402,
+      "delta_T_max_c": 25.74024643048851,
+      "heat_input_w": 25.000000000000004,
+      "label": "SIMULATED",
+      "method": "thermal_resistance_calculation"
+    },
+    "uniformity": {
+      "coefficient_of_variation": 0.1229161118377311,
+      "temperature_spread_c": 13.909284950367297,
+      "label": "SIMULATED",
+      "method": "temperature_uniformity_analysis"
+    }
+  },
+  "flow_simulated_quantities": {
+    "pressure_drop": {
+      "pressure_drop_pa": 1000.0,
+      "inlet_pressure_pa": 102325.0,
+      "outlet_pressure_pa": 101325.0,
+      "label": "SIMULATED",
+      "method": "pressure_poisson_solver"
+    },
+    "flow_rate": {
+      "flow_rate_m3_s": 0.001800408331125899,
+      "flow_rate_lpm": 108.02449986755394,
+      "label": "SIMULATED",
+      "method": "velocity_integration"
+    },
+    "velocity_statistics": {
+      "v_mean_m_s": 162.46747677558,
+      "v_max_m_s": 306.7849073948131,
+      "v_min_m_s": 1.7520156157665343,
+      "v_std_m_s": 40.68649068410323,
+      "vz_mean_m_s": 140.57367191211605,
+      "label": "SIMULATED",
+      "method": "velocity_field_statistics"
+    },
+    "flow_uniformity": {
+      "coefficient_of_variation": 0.23617736756683477,
+      "maldistribution_factor": 1.887476049644459,
+      "label": "SIMULATED",
+      "method": "velocity_distribution_analysis"
+    },
+    "hydraulic_resistance": {
+      "hydraulic_resistance_pa_s_m3": 555429.556013353,
+      "label": "SIMULATED",
+      "method": "resistance_from_dp_and_q"
+    }
+  },
+  "geometric_quantities": {
+    "porosity": 0.563976,
+    "domain_volume_mm3": 125.0,
+    "fluid_volume_mm3": 70.497,
+    "label": "GEOMETRIC",
+    "method": "geometry_analysis"
+  },
+  "solver_info": {
+    "thermal_converged": true,
+    "thermal_solve_time_s": 98.75048756599426,
+    "thermal_residual": 0.3649308488715733,
+    "flow_converged": true
+  }
+}

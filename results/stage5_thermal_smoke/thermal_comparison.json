@@ -1,0 +1,31 @@
+{
+  "n_candidates": 2,
+  "candidate_ids": [
+    "candidate_02_diamond_2d_s1045",
+    "candidate_01_diamond_2d_s1127"
+  ],
+  "thermal_resistance": {
+    "values_k_w": [
+      1.0296098572195402,
+      1.0349706405416004
+    ],
+    "best_k_w": 1.0296098572195402,
+    "worst_k_w": 1.0349706405416004,
+    "mean_k_w": 1.0322902488805703,
+    "std_k_w": 0.002680391661030068,
+    "range_k_w": 0.005360783322060136,
+    "best_candidate": "candidate_02_diamond_2d_s1045"
+  },
+  "peak_temperature": {
+    "values_c": [
+      50.74024643048851,
+      50.874266013540016
+    ],
+    "lowest_c": 50.74024643048851,
+    "highest_c": 50.874266013540016,
+    "mean_c": 50.80725622201426,
+    "std_c": 0.06700979152575215,
+    "range_c": 0.1340195830515043,
+    "best_candidate": "candidate_02_diamond_2d_s1045"
+  }
+}

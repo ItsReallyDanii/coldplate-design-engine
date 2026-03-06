@@ -1,0 +1,11 @@
+{
+  "converged": true,
+  "solve_time_s": 99.60624170303345,
+  "residual": 0.369108921890917,
+  "solver": "direct_sparse",
+  "matrix_shape": [
+    125000,
+    125000
+  ],
+  "matrix_nnz": 860000
+}
