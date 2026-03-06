@@ -8,36 +8,36 @@
       "method": "pressure_poisson_solver"
     },
     "flow_rate": {
-      "flow_rate_m3_s": 0.001800408331125899,
-      "flow_rate_lpm": 108.02449986755394,
+      "flow_rate_m3_s": 0.0017567382919853743,
+      "flow_rate_lpm": 105.40429751912245,
       "label": "SIMULATED",
       "method": "velocity_integration"
     },
     "velocity_statistics": {
-      "v_mean_m_s": 162.46747677558,
-      "v_max_m_s": 306.7849073948131,
-      "v_min_m_s": 1.7520156157665343,
-      "v_std_m_s": 40.68649068410323,
-      "vz_mean_m_s": 140.57367191211605,
+      "v_mean_m_s": 161.5132159659982,
+      "v_max_m_s": 305.9518176660595,
+      "v_min_m_s": 1.6964975902814003,
+      "v_std_m_s": 40.95922686869717,
+      "vz_mean_m_s": 139.222402601583,
       "label": "SIMULATED",
       "method": "velocity_field_statistics"
     },
     "flow_uniformity": {
-      "coefficient_of_variation": 0.23617736756683477,
-      "maldistribution_factor": 1.887476049644459,
+      "coefficient_of_variation": 0.23993118490304355,
+      "maldistribution_factor": 1.8920361256949274,
       "label": "SIMULATED",
       "method": "velocity_distribution_analysis"
     },
     "hydraulic_resistance": {
-      "hydraulic_resistance_pa_s_m3": 555429.556013353,
+      "hydraulic_resistance_pa_s_m3": 569236.7523166196,
       "label": "SIMULATED",
       "method": "resistance_from_dp_and_q"
     }
   },
   "geometric_quantities": {
-    "porosity": 0.563976,
+    "porosity": 0.555192,
     "domain_volume_mm3": 125.0,
-    "fluid_volume_mm3": 70.497,
+    "fluid_volume_mm3": 69.399,
     "label": "GEOMETRIC",
     "method": "geometry_analysis"
   },
@@ -48,6 +48,6 @@
   "solver_info": {
     "converged": true,
     "iterations": 1,
-    "solve_time_s": 133.82487392425537
+    "solve_time_s": 132.61710834503174
   }
 }

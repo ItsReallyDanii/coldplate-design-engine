@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-06T10:20:45.352574Z",
+  "timestamp": "2026-03-06T10:26:58.734643Z",
   "stage": "stage4_sim",
   "schema_version": "1.0",
   "candidate_id": "candidate_01_diamond_2d_s1127",
@@ -143,11 +143,12 @@
       "method": "finite_difference",
       "converged": true,
       "iterations": 1,
-      "solve_time_s": 130.34328055381775,
+      "solve_time_s": 132.61710834503174,
       "tolerance": 1e-06
     },
     "config": {
-      "mode": "smoke"
+      "mode": "full",
+      "top_k": 2
     }
   },
   "metrics": {
@@ -200,7 +201,7 @@
     "solver_info": {
       "converged": true,
       "iterations": 1,
-      "solve_time_s": 130.34328055381775
+      "solve_time_s": 132.61710834503174
     }
   }
 }

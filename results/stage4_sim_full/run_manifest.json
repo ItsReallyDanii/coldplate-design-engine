@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-03-06T10:29:13.122350Z",
+  "stage": "stage4_sim",
+  "git_sha": "617eb6ab06191e624373f98dea65542e0e460bb7",
+  "config": {
+    "mode": "full",
+    "top_k": 2,
+    "stage3_dir": "results/stage3_geometry_smoke"
+  },
+  "n_candidates": 2,
+  "candidate_ids": [
+    "candidate_01_diamond_2d_s1127",
+    "candidate_02_diamond_2d_s1045"
+  ]
+}
