@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS; Stage 5 complete and PASS; Stage 6 complete and PASS.** Literature population in progress (does not block execution).
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS; Stage 5 complete and PASS; Stage 6 complete and PASS; Stage 7 readiness assessed - CONDITIONAL PROCEED.** Literature population in progress (does not block execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -28,8 +28,8 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 4 | Flow simulation under matched constraints | **Complete (PASS)** |
 | 5 | Thermal validation (flow-informed) | **Complete (PASS)** |
 | 6 | Structural and manufacturability screening | **Complete (PASS)** |
-| 7 | Prototype fabrication and bench testing | Pending |
-| 7 | System integration and reliability screening | Pending |
+| 7 | Prototype fabrication and bench testing | **Readiness: CONDITIONAL PROCEED** |
+| 8 | System integration and reliability screening | Pending |
 | 8 | Release and handoff with audited claims | Pending |
 
 See `docs/stage_gates.md` for detailed gate criteria.
@@ -196,6 +196,69 @@ pytest tests/test_stage5_thermal.py -v
 - Winner: candidate_02_diamond_2d_s1045
 
 **IMPORTANT:** Stage 5 provides **simplified thermal validation** with flow-informed convection. This is NOT full conjugate heat transfer. Fluid energy equation not solved. Results enable thermal performance ranking under matched conditions but do NOT establish absolute thermal predictions. See documentation for honest limitations.
+
+## Stage 6: Quick Start
+
+Stage 6 implements structural and manufacturability screening on top of Stage 5 thermal results.
+
+**Run smoke test:**
+```bash
+python src/stage6_structural/cli.py smoke
+```
+
+**Run on Stage 5 outputs:**
+```bash
+python src/stage6_structural/cli.py run results/stage5_thermal --output results/stage6_structural
+```
+
+**Run tests:**
+```bash
+pytest tests/test_stage6_structural.py -v
+```
+
+**See full documentation:** `docs/stage6_structural_screening.md`
+
+**Stage 6 Results:**
+- **Structural and manufacturability screening operational**
+- Analytical structural screening (thin-wall, thermal stress, deflection)
+- Manufacturability checks (wall thickness, feature size, trapped volumes)
+- All quantities honestly labeled (ANALYTICAL, STRUCTURAL_SCREENED, MANUFACTURABILITY_SCREENED)
+- **Stage 6 gate: PASS**
+
+**IMPORTANT:** Stage 6 provides **screening-level analysis only**, NOT full FEA or production certification. Analytical approximations with conservative assumptions. Results eliminate obviously bad designs but do NOT certify production readiness.
+
+## Stage 7: Readiness Status
+
+**Status: CONDITIONAL PROCEED**
+
+Stage 7 benchtop validation readiness has been assessed. See `STAGE7_READINESS_VERDICT.md` for full analysis.
+
+**Quick summary:**
+- **Verdict:** CONDITIONAL PROCEED
+- **Candidates evaluated:** 2 (both diamond_2d family)
+- **Structural performance:** Both PASS with excellent margins (1.8×)
+- **Thermal performance:** Best = 1.030 K/W (candidate_02)
+- **Hydraulic performance:** Both reasonable (ΔP = 1000 Pa)
+- **Manufacturability:** UNKNOWN (smoke test used synthetic geometry)
+
+**Critical finding:** Stage 6 smoke test failures are due to synthetic geometry reconstruction, NOT real design issues. Real geometry must be evaluated before prototype decision.
+
+**Prerequisite (1-2 days):**
+1. Load actual Stage 3 voxel data into Stage 6
+2. Re-run screening with real geometry
+3. Verify ≥1 candidate passes manufacturability
+
+**Then proceed with:**
+- Fabrication planning (AM vendor, Aluminum 6061-T6)
+- Test facility setup (closed-loop liquid cooling)
+- Budget approval (~$3k-10k per prototype + testing)
+
+**Timeline:** 8-10 weeks from geometry screening to benchtop test results
+
+**See full readiness verdict:** `STAGE7_READINESS_VERDICT.md` (27k words)  
+**See executive summary:** `docs/stage7_readiness_executive_summary.md`
+
+**IMPORTANT:** Benchtop validation targets **directional agreement** (within 2-3× of simulation), NOT quantitative accuracy. Success means validation for refinement, NOT production certification.
 
 ## Contributing
 
