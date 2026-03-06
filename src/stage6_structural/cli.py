@@ -41,10 +41,12 @@ def reconstruct_volume_from_stage3(stage3_metadata: Dict[str, Any]) -> np.ndarra
     
     if raw_path and os.path.exists(raw_path):
         # Load actual geometry
+        print(f"  Loading actual geometry from: {raw_path}")
         volume = np.load(raw_path)
         # Convert to boolean (fluid=True, solid=False)
         # Stage 3 exports use 1=fluid, 0=solid
         volume = volume.astype(bool)
+        print(f"  Loaded geometry: shape={volume.shape}, porosity={volume.sum()/volume.size:.3f}")
         return volume
     
     # Fallback: if path not found, create synthetic volume

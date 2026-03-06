@@ -194,11 +194,11 @@
     "flow_converged": true
   },
   "provenance": {
-    "timestamp": "2026-03-06T12:30:20.648842+00:00",
+    "timestamp": "2026-03-06T12:36:28.140007+00:00",
     "stage": "stage6_structural",
     "schema_version": "1.0",
     "candidate_id": "candidate_01_diamond_2d_s1127",
-    "git_sha": "2f36374af2634352743315068f42421da79f9fe3",
+    "git_sha": "83275ff8b63d9b114a3404521a208a513213a3c3",
     "stage5_source": {
       "candidate_id": "candidate_01_diamond_2d_s1127",
       "thermal_converged": true,
