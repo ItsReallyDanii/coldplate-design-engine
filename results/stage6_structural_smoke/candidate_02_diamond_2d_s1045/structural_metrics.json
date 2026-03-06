@@ -14,12 +14,12 @@
       "note": "Conservative upper bound for screening"
     },
     "thermal_stress": {
-      "sigma_thermal_unconstrained_mpa": 62.4696541663914,
-      "sigma_thermal_effective_mpa": 31.2348270831957,
+      "sigma_thermal_unconstrained_mpa": 109.36318502843564,
+      "sigma_thermal_effective_mpa": 54.68159251421782,
       "constraint_factor": 0.5,
-      "delta_T_c": 25.740245191681772,
+      "delta_T_c": 45.062442479306696,
       "allowable_stress_mpa": 92.0,
-      "margin_of_safety": 1.9454301045097155,
+      "margin_of_safety": 0.6824674587902497,
       "passes": true,
       "failure_mode": null,
       "label": "ANALYTICAL",
@@ -38,9 +38,9 @@
       "note": "Conservative estimate for screening"
     },
     "combined_stress": {
-      "sigma_combined_mpa": 32.2580770831957,
+      "sigma_combined_mpa": 55.704842514217816,
       "allowable_stress_mpa": 92.0,
-      "margin_of_safety": 1.8519988889209347,
+      "margin_of_safety": 0.6515619800292658,
       "passes": true,
       "label": "ANALYTICAL",
       "method": "linear_superposition"
@@ -52,25 +52,25 @@
   },
   "manufacturability_screened_quantities": {
     "wall_thickness": {
-      "min_wall_thickness_mm": 0.2,
-      "mean_wall_thickness_mm": 0.29698352009769524,
+      "min_wall_thickness_mm": 0.5,
+      "mean_wall_thickness_mm": 0.754603966534826,
       "required_min_mm": 0.5,
-      "passes": false,
-      "failure_mode": "wall_too_thin",
+      "passes": true,
+      "failure_mode": null,
       "label": "GEOMETRIC",
       "method": "distance_transform_wall_thickness"
     },
     "feature_size": {
-      "min_channel_diameter_mm": 0.2,
-      "mean_channel_diameter_mm": 0.3367993659935735,
+      "min_channel_diameter_mm": 0.5,
+      "mean_channel_diameter_mm": 0.859512489325227,
       "required_min_mm": 0.5,
-      "passes": false,
-      "failure_mode": "feature_too_small",
+      "passes": true,
+      "failure_mode": null,
       "label": "GEOMETRIC",
       "method": "distance_transform_feature_size"
     },
     "unsupported_regions": {
-      "max_unsupported_span_mm": 0.1,
+      "max_unsupported_span_mm": 0.25,
       "max_span_voxels": 1,
       "required_max_mm": 10.0,
       "passes": true,
@@ -88,11 +88,8 @@
       "label": "GEOMETRIC",
       "method": "connected_component_analysis"
     },
-    "overall_manufacturability_pass": false,
-    "manufacturability_failure_modes": [
-      "wall_too_thin",
-      "feature_too_small"
-    ],
+    "overall_manufacturability_pass": true,
+    "manufacturability_failure_modes": [],
     "label": "MANUFACTURABILITY_SCREENED",
     "method": "geometry_based_manufacturability_screening"
   },
@@ -106,42 +103,39 @@
     "source": "ASM_Metals_Handbook"
   },
   "stage6_verdict": {
-    "overall_pass": false,
+    "overall_pass": true,
     "structural_pass": true,
-    "manufacturability_pass": false,
-    "all_failure_modes": [
-      "wall_too_thin",
-      "feature_too_small"
-    ],
+    "manufacturability_pass": true,
+    "all_failure_modes": [],
     "screening_level": "PRELIMINARY",
     "note": "Screening-level analysis only; full FEA and fabrication validation required before production"
   },
   "thermal_simulated_quantities": {
     "temperature_statistics": {
-      "T_mean_c": 26.807937052989864,
-      "T_max_c": 50.74024643048851,
-      "T_min_c": 25.00000123880674,
-      "T_std_c": 3.218419084910057,
-      "T_range_c": 25.740245191681772,
-      "T_solid_mean_c": 28.22778488690056,
-      "T_solid_max_c": 39.27267718102672,
-      "T_solid_min_c": 25.363392230659425,
-      "T_fluid_mean_c": 25.710217057931423,
-      "T_fluid_max_c": 50.74024643048851,
-      "T_fluid_min_c": 25.00000123880674,
+      "T_mean_c": 29.52302475310927,
+      "T_max_c": 70.06246807367916,
+      "T_min_c": 25.00002559437246,
+      "T_std_c": 4.664352110321996,
+      "T_range_c": 45.062442479306696,
+      "T_solid_mean_c": 33.06830331206533,
+      "T_solid_max_c": 70.06246807367916,
+      "T_solid_min_c": 25.000028968181645,
+      "T_fluid_mean_c": 26.775374873714206,
+      "T_fluid_max_c": 47.21928585089968,
+      "T_fluid_min_c": 25.00002559437246,
       "label": "SIMULATED",
       "method": "thermal_field_statistics"
     },
     "thermal_resistance": {
-      "thermal_resistance_k_w": 1.0296098572195402,
-      "delta_T_max_c": 25.74024643048851,
-      "heat_input_w": 25.000000000000004,
+      "thermal_resistance_k_w": 11.265617018419787,
+      "delta_T_max_c": 45.062468073679156,
+      "heat_input_w": 4.000000000000001,
       "label": "SIMULATED",
       "method": "thermal_resistance_calculation"
     },
     "uniformity": {
-      "coefficient_of_variation": 0.1229161118377311,
-      "temperature_spread_c": 13.909284950367297,
+      "coefficient_of_variation": 0.08730035419678064,
+      "temperature_spread_c": 45.06243910549751,
       "label": "SIMULATED",
       "method": "temperature_uniformity_analysis"
     }
@@ -155,36 +149,36 @@
       "method": "pressure_poisson_solver"
     },
     "flow_rate": {
-      "flow_rate_m3_s": 0.001800408331125899,
-      "flow_rate_lpm": 108.02449986755394,
+      "flow_rate_m3_s": 0.0007337228676132756,
+      "flow_rate_lpm": 44.02337205679654,
       "label": "FLOW_SIMULATED",
       "method": "velocity_integration"
     },
     "velocity_statistics": {
-      "v_mean_m_s": 162.46747677558,
-      "v_max_m_s": 306.7849073948131,
-      "v_min_m_s": 1.7520156157665343,
-      "v_std_m_s": 40.68649068410323,
-      "vz_mean_m_s": 140.57367191211605,
+      "v_mean_m_s": 401.10815847041385,
+      "v_max_m_s": 782.1315848493637,
+      "v_min_m_s": 2.2494589800847025,
+      "v_std_m_s": 126.70009367139582,
+      "vz_mean_m_s": 346.54187948289587,
       "label": "FLOW_SIMULATED",
       "method": "velocity_field_statistics"
     },
     "flow_uniformity": {
-      "coefficient_of_variation": 0.23617736756683477,
-      "maldistribution_factor": 1.887476049644459,
+      "coefficient_of_variation": 0.3027531236845592,
+      "maldistribution_factor": 1.8414689206433699,
       "label": "FLOW_SIMULATED",
       "method": "velocity_distribution_analysis"
     },
     "hydraulic_resistance": {
-      "hydraulic_resistance_pa_s_m3": 555429.556013353,
+      "hydraulic_resistance_pa_s_m3": 1362912.4075863906,
       "label": "FLOW_SIMULATED",
       "method": "resistance_from_dp_and_q"
     }
   },
   "geometric_quantities": {
-    "porosity": 0.563976,
-    "domain_volume_mm3": 125.0,
-    "fluid_volume_mm3": 70.497,
+    "porosity": 0.563375,
+    "domain_volume_mm3": 8.0,
+    "fluid_volume_mm3": 4.507,
     "label": "GEOMETRIC",
     "method": "geometry_analysis"
   },
@@ -194,15 +188,15 @@
     "flow_converged": true
   },
   "provenance": {
-    "timestamp": "2026-03-06T12:36:28.107143+00:00",
+    "timestamp": "2026-03-06T13:07:39.885302+00:00",
     "stage": "stage6_structural",
     "schema_version": "1.0",
     "candidate_id": "candidate_02_diamond_2d_s1045",
-    "git_sha": "83275ff8b63d9b114a3404521a208a513213a3c3",
+    "git_sha": "764d85854961ae982f5690009b4e2a302fe2f6d5",
     "stage5_source": {
       "candidate_id": "candidate_02_diamond_2d_s1045",
       "thermal_converged": true,
-      "thermal_solve_time_s": 135.4897997379303
+      "thermal_solve_time_s": 0.32790327072143555
     },
     "material": {
       "name": "Aluminum 6061-T6",
@@ -217,7 +211,7 @@
       },
       "thermal": {
         "type": "thermal_expansion",
-        "delta_T_c": 25.740245191681772,
+        "delta_T_c": 45.062442479306696,
         "label": "ANALYTICAL"
       }
     },

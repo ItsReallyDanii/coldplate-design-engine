@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-06T12:36:28.143012+00:00",
+  "timestamp": "2026-03-06T13:07:39.894230+00:00",
   "stage": "stage6_structural",
-  "git_sha": "83275ff8b63d9b114a3404521a208a513213a3c3",
+  "git_sha": "764d85854961ae982f5690009b4e2a302fe2f6d5",
   "mode": "smoke",
   "input": {
     "stage5_dir": "results/stage5_thermal_smoke"
@@ -11,7 +11,7 @@
   },
   "execution": {
     "n_candidates_processed": 2,
-    "n_candidates_pass": 0,
-    "pass_rate": 0.0
+    "n_candidates_pass": 2,
+    "pass_rate": 1.0
   }
 }

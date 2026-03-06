@@ -4,20 +4,20 @@
     {
       "candidate_id": "candidate_01_diamond_2d_s1127",
       "converged": true,
-      "solve_time_s": 130.34328055381775,
+      "solve_time_s": 0.19047856330871582,
       "pressure_drop_pa": 1000.0,
-      "flow_rate_m3_s": 0.0017567382919853743,
-      "hydraulic_resistance": 569236.7523166196,
-      "porosity": 0.555192
+      "flow_rate_m3_s": 0.0007165706622347222,
+      "hydraulic_resistance": 1395535.7827256913,
+      "porosity": 0.557
     },
     {
       "candidate_id": "candidate_02_diamond_2d_s1045",
       "converged": true,
-      "solve_time_s": 133.82487392425537,
+      "solve_time_s": 0.1865525245666504,
       "pressure_drop_pa": 1000.0,
-      "flow_rate_m3_s": 0.001800408331125899,
-      "hydraulic_resistance": 555429.556013353,
-      "porosity": 0.563976
+      "flow_rate_m3_s": 0.0007337228676132756,
+      "hydraulic_resistance": 1362912.4075863906,
+      "porosity": 0.563375
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "n_candidates": 2,
-  "n_pass": 0,
-  "pass_rate": 0.0,
-  "best_candidate": null,
+  "n_pass": 2,
+  "pass_rate": 1.0,
+  "best_candidate": "candidate_02_diamond_2d_s1045",
   "matched_conditions": {
     "matched": true,
     "issues": [],

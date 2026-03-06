@@ -1,30 +1,30 @@
 {
   "thermal_simulated_quantities": {
     "temperature_statistics": {
-      "T_mean_c": 26.853233903761247,
-      "T_max_c": 50.874266013540016,
-      "T_min_c": 25.000001475200214,
-      "T_std_c": 3.224849416589237,
-      "T_range_c": 25.8742645383398,
-      "T_solid_mean_c": 28.2657486264397,
-      "T_solid_max_c": 39.231777122383015,
-      "T_solid_min_c": 25.391351015690528,
-      "T_fluid_mean_c": 25.721557206753438,
-      "T_fluid_max_c": 50.874266013540016,
-      "T_fluid_min_c": 25.000001475200214,
+      "T_mean_c": 29.573489885550835,
+      "T_max_c": 70.062468837506,
+      "T_min_c": 25.000026594347588,
+      "T_std_c": 4.651215172340531,
+      "T_range_c": 45.062442243158415,
+      "T_solid_mean_c": 33.06590253624666,
+      "T_solid_max_c": 70.062468837506,
+      "T_solid_min_c": 25.00002988038555,
+      "T_fluid_mean_c": 26.795861870724522,
+      "T_fluid_max_c": 47.21928688920865,
+      "T_fluid_min_c": 25.000026594347588,
       "label": "SIMULATED",
       "method": "thermal_field_statistics"
     },
     "thermal_resistance": {
-      "thermal_resistance_k_w": 1.0349706405416004,
-      "delta_T_max_c": 25.874266013540016,
-      "heat_input_w": 25.000000000000004,
+      "thermal_resistance_k_w": 11.265617209376499,
+      "delta_T_max_c": 45.062468837506,
+      "heat_input_w": 4.000000000000001,
       "label": "SIMULATED",
       "method": "thermal_resistance_calculation"
     },
     "uniformity": {
-      "coefficient_of_variation": 0.12202493789045775,
-      "temperature_spread_c": 13.840426106692487,
+      "coefficient_of_variation": 0.08591909367602851,
+      "temperature_spread_c": 45.06243895712045,
       "label": "SIMULATED",
       "method": "temperature_uniformity_analysis"
     }
@@ -38,43 +38,43 @@
       "method": "pressure_poisson_solver"
     },
     "flow_rate": {
-      "flow_rate_m3_s": 0.0017567382919853743,
-      "flow_rate_lpm": 105.40429751912245,
+      "flow_rate_m3_s": 0.0007165706622347222,
+      "flow_rate_lpm": 42.99423973408333,
       "label": "FLOW_SIMULATED",
       "method": "velocity_integration"
     },
     "velocity_statistics": {
-      "v_mean_m_s": 161.5132159659982,
-      "v_max_m_s": 305.9518176660595,
-      "v_min_m_s": 1.6964975902814003,
-      "v_std_m_s": 40.95922686869717,
-      "vz_mean_m_s": 139.222402601583,
+      "v_mean_m_s": 399.56890033485445,
+      "v_max_m_s": 774.868483169882,
+      "v_min_m_s": 2.2632171913360684,
+      "v_std_m_s": 127.18510072267442,
+      "vz_mean_m_s": 344.511151287091,
       "label": "FLOW_SIMULATED",
       "method": "velocity_field_statistics"
     },
     "flow_uniformity": {
-      "coefficient_of_variation": 0.23993118490304355,
-      "maldistribution_factor": 1.8920361256949274,
+      "coefficient_of_variation": 0.3039640195161283,
+      "maldistribution_factor": 1.8257547202952318,
       "label": "FLOW_SIMULATED",
       "method": "velocity_distribution_analysis"
     },
     "hydraulic_resistance": {
-      "hydraulic_resistance_pa_s_m3": 569236.7523166196,
+      "hydraulic_resistance_pa_s_m3": 1395535.7827256913,
       "label": "FLOW_SIMULATED",
       "method": "resistance_from_dp_and_q"
     }
   },
   "geometric_quantities": {
-    "porosity": 0.555192,
-    "domain_volume_mm3": 125.0,
-    "fluid_volume_mm3": 69.399,
+    "porosity": 0.557,
+    "domain_volume_mm3": 8.0,
+    "fluid_volume_mm3": 4.456,
     "label": "GEOMETRIC",
     "method": "geometry_analysis"
   },
   "solver_info": {
     "thermal_converged": true,
-    "thermal_solve_time_s": 136.8528754711151,
-    "thermal_residual": 0.369108921890917,
+    "thermal_solve_time_s": 0.28880786895751953,
+    "thermal_residual": 0.05615795380148733,
     "flow_converged": true
   }
 }

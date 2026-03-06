@@ -142,12 +142,25 @@ def run_structural_screening(
             
             # Reconstruct volume (simplified for screening)
             volume = reconstruct_volume_from_stage3(stage3_metadata)
-            voxel_size_mm = stage3_metadata.get('validation', {}).get('feature_sizes', {}).get('min_channel_diameter_mm', 0.2) / 2.0
-            if voxel_size_mm == 0:
-                voxel_size_mm = 0.1  # Default
+            
+            # Extract validation data from nested provenance structure
+            # NOTE: Stage 4 stores Stage 3 metadata with structure:
+            #   stage3_metadata = { 'provenance': {...}, 'metadata': {...} }
+            # The validation data is nested at stage3_metadata['provenance']['validation'],
+            # NOT directly at stage3_metadata['validation']. This was a bug source before.
+            stage3_prov = stage3_metadata.get('provenance', {})
+            validation = stage3_prov.get('validation', {})
+            feature_sizes = validation.get('feature_sizes', {})
+            
+            # Calculate voxel size from feature sizes
+            # min_channel_diameter_mm = 2 voxels × voxel_size_mm
+            min_channel = feature_sizes.get('min_channel_diameter_mm', 0.0)
+            if min_channel > 0:
+                voxel_size_mm = min_channel / 2.0
+            else:
+                voxel_size_mm = 0.1  # Fallback default
             
             # Extract geometry info for structural analysis
-            validation = stage3_metadata.get('validation', {})
             bbox = validation.get('bounding_box', {})
             dims_mm = bbox.get('dimensions_mm', {})
             
@@ -157,7 +170,7 @@ def run_structural_screening(
                     dims_mm.get('y', 5.0),
                     dims_mm.get('z', 5.0)
                 ],
-                'min_wall_thickness_mm': validation.get('feature_sizes', {}).get('min_wall_thickness_mm', 0.5),
+                'min_wall_thickness_mm': feature_sizes.get('min_wall_thickness_mm', 0.5),
                 'porosity': validation.get('porosity', 0.5)
             }
             

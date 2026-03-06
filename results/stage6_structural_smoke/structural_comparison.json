@@ -1,38 +1,46 @@
 {
   "n_candidates": 2,
   "n_pass_structural": 2,
-  "n_pass_manufacturability": 0,
-  "n_pass_overall": 0,
-  "pass_rate": 0.0,
-  "best_candidate": null,
-  "failure_mode_counts": {
-    "wall_too_thin": 2,
-    "feature_too_small": 2
+  "n_pass_manufacturability": 2,
+  "n_pass_overall": 2,
+  "pass_rate": 1.0,
+  "best_candidate": "candidate_02_diamond_2d_s1045",
+  "failure_mode_counts": {},
+  "statistics": {
+    "thermal_resistance_range_k_w": [
+      11.265617018419787,
+      11.265617209376499
+    ],
+    "structural_margin_range": [
+      0.6515619800292658,
+      0.651561988525239
+    ],
+    "best_thermal_resistance_k_w": 11.265617018419787,
+    "best_structural_margin": 0.651561988525239
   },
-  "statistics": null,
   "ranking": [
     {
       "candidate_id": "candidate_02_diamond_2d_s1045",
-      "overall_pass": false,
+      "overall_pass": true,
       "structural_pass": true,
-      "manufacturability_pass": false,
-      "thermal_resistance_k_w": 1.0296098572195402,
-      "structural_margin": 1.8519988889209347,
+      "manufacturability_pass": true,
+      "thermal_resistance_k_w": 11.265617018419787,
+      "structural_margin": 0.6515619800292658,
       "pressure_drop_pa": 1000.0,
-      "T_max_c": 50.74024643048851,
-      "composite_score": Infinity,
+      "T_max_c": 70.06246807367916,
+      "composite_score": 11.619094359125745,
       "rank": 1
     },
     {
       "candidate_id": "candidate_01_diamond_2d_s1127",
-      "overall_pass": false,
+      "overall_pass": true,
       "structural_pass": true,
-      "manufacturability_pass": false,
-      "thermal_resistance_k_w": 1.0349706405416004,
-      "structural_margin": 1.8376928030897837,
+      "manufacturability_pass": true,
+      "thermal_resistance_k_w": 11.265617209376499,
+      "structural_margin": 0.651561988525239,
       "pressure_drop_pa": 1000.0,
-      "T_max_c": 50.874266013540016,
-      "composite_score": Infinity,
+      "T_max_c": 70.062468837506,
+      "composite_score": 11.619094548081204,
       "rank": 2
     }
   ]
