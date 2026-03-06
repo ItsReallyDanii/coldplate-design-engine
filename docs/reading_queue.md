@@ -1,5 +1,7 @@
 # Reading Queue
 
+Source IDs are assigned sequentially and never reused; each queued source should eventually have a corresponding file in `docs/source_notes/`.
+
 Status values (progression: `not found` → `queued` → `reading` → `captured` → `summarized` → `incorporated`):
 - `not found`: target source not yet located.
 - `queued`: located and awaiting read.

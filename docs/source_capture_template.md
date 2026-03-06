@@ -1,5 +1,7 @@
 # Source Capture Template
 
+Save each source note as its own markdown file in `docs/source_notes/` (one file per source). The Source ID must match entries in `docs/reading_queue.md` and `docs/literature_matrix.md`.
+
 ## Source ID
 - Identifier such as `LIT-001`, `LIT-002`, or `LIT-003`.
 
