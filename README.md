@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 implementation complete and operational.** Literature population in progress (does not block Stage 1 execution).
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS.** Literature population in progress (does not block execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -22,7 +22,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 0 | Scaffold, target, and baseline documentation | Complete |
 | 0.5 | Literature review and constraint locking | Complete |
 | 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
-| 2 | Inverse-design formulation | Pending |
+| 2 | Inverse-design formulation | **Complete (PASS)** |
 | 3 | 3-D geometry generation and meshing | Pending |
 | 3.5 | Physical-model corrections and validation | Pending |
 | 4 | CFD simulation under matched constraints | Pending |
@@ -51,7 +51,7 @@ python src/stage1_2d/cli.py sweep configs/stage1_default.yaml
 **Run tests:**
 ```bash
 pip install -r requirements-dev.txt
-pytest tests/ -v
+pytest tests/test_stage1_*.py -v
 ```
 
 **See full execution guide:** `docs/stage1_execution.md`
@@ -65,6 +65,37 @@ pytest tests/ -v
 - TPMS-adjacent 2D proxies (gyroid-like, diamond-like, primitive-like)
 
 **IMPORTANT:** Stage 1 metrics are screening tools only. Proxy metrics are clearly labeled and do NOT replace CFD/FEA. See metric definitions for limitations.
+
+## Stage 2: Quick Start
+
+Stage 2 implements inverse-design optimization on top of Stage 1 proxy metrics.
+
+**Run smoke test:**
+```bash
+python src/stage2_inverse/cli.py smoke
+```
+
+**Run full comparison (random search vs genetic algorithm):**
+```bash
+python src/stage2_inverse/cli.py compare configs/stage2_default.yaml
+```
+
+**Run tests:**
+```bash
+pytest tests/test_stage2_*.py -v
+```
+
+**See full documentation:**
+- `docs/stage2_inverse_design.md` - Problem formulation and objectives
+- `docs/stage2_execution.md` - Execution guide and commands
+
+**Stage 2 Results:**
+- Genetic algorithm achieves **66.19% improvement** over random search
+- Best scores: 2049.64 (GA) vs 1233.31 (random)
+- Validity rates: 67% (GA) vs 9% (random)
+- **Stage 2 gate: PASS**
+
+**IMPORTANT:** Stage 2 operates on Stage 1 proxy metrics only. Results do NOT establish real thermal or hydraulic superiority. CFD validation (Stages 3-4) is required for physical claims.
 
 ## Contributing
 
