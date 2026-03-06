@@ -1,0 +1,49 @@
+# Stage 1 Smoke Test Configuration
+# Minimal configuration for testing
+
+output_dir: "results/stage1_2d_smoke"
+
+grid:
+  nx: 100
+  ny: 100
+  dx: 1.0e-4
+  dy: 1.0e-4
+
+families:
+  - straight_channel
+  - serpentine_channel
+  - pin_fin
+  - gyroid_2d
+  - diamond_2d
+  - primitive_2d
+
+# Single configuration per family for smoke test
+param_ranges:
+  straight_channel:
+    num_channels: [4]
+    channel_width_fraction: [0.5]
+  
+  serpentine_channel:
+    channel_width_px: [10]
+    turn_radius_px: [15]
+    num_passes: [3]
+  
+  pin_fin:
+    pin_diameter_px: [8]
+    pin_spacing_px: [25]
+    offset_rows: [true]
+  
+  gyroid_2d:
+    wavelength_px: [25]
+    threshold: [0.0]
+  
+  diamond_2d:
+    wavelength_px: [25]
+    threshold: [0.0]
+  
+  primitive_2d:
+    wavelength_px: [25]
+    threshold: [0.0]
+
+seed_start: 42
+num_samples_per_config: 1

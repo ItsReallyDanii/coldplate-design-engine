@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; literature population in progress. Documentation only—no CFD, FEA, or optimization results are present yet.
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 implementation complete and operational.** Literature population in progress (does not block Stage 1 execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -21,7 +21,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 |-------|-------|--------|
 | 0 | Scaffold, target, and baseline documentation | Complete |
 | 0.5 | Literature review and constraint locking | In progress |
-| 1 | 2-D surrogate modeling and parameter sweeps | Pending |
+| 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
 | 2 | Inverse-design formulation | Pending |
 | 3 | 3-D geometry generation and meshing | Pending |
 | 3.5 | Physical-model corrections and validation | Pending |
@@ -32,6 +32,39 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 8 | Release and handoff with audited claims | Pending |
 
 See `docs/stage_gates.md` for detailed gate criteria.
+
+## Stage 1: Quick Start
+
+Stage 1 implements 2D baseline geometry generation, metric computation, and parameter sweeps.
+
+**Run smoke test:**
+```bash
+pip install -e .
+python src/stage1_2d/cli.py smoke
+```
+
+**Run parameter sweep:**
+```bash
+python src/stage1_2d/cli.py sweep configs/stage1_default.yaml
+```
+
+**Run tests:**
+```bash
+pip install -r requirements-dev.txt
+pytest tests/ -v
+```
+
+**See full execution guide:** `docs/stage1_execution.md`
+
+**See metric definitions:** `docs/stage1_metric_definitions.md`
+
+**Baseline families implemented:**
+- Straight channels
+- Serpentine channels
+- Pin-fin arrays
+- TPMS-adjacent 2D proxies (gyroid-like, diamond-like, primitive-like)
+
+**IMPORTANT:** Stage 1 metrics are screening tools only. Proxy metrics are clearly labeled and do NOT replace CFD/FEA. See metric definitions for limitations.
 
 ## Contributing
 
