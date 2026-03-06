@@ -1,5 +1,6 @@
 # Stage 3 Default Configuration
 # 3D geometry promotion and meshing readiness
+# UPDATED 2026-03-06: Remediation v1 for manufacturability (0.5mm min features)
 
 # Stage 2 source
 stage2_results: results/stage2_inverse/best_candidates.csv
@@ -10,12 +11,14 @@ family_filter: null  # Optional: filter by family (e.g., 'diamond_2d')
 valid_only: true  # Only promote valid candidates
 
 # 3D geometry parameters
-resolution: 100  # Grid resolution (nx=ny=nz)
+# REMEDIATION v1: Changed from resolution=100, voxel=0.1mm to resolution=40, voxel=0.25mm
+# to achieve 0.5mm minimum features (2 voxels × 0.25mm = 0.5mm)
+resolution: 40  # Grid resolution (nx=ny=nz) - was 100
 height_mm: 2.0  # Height of 3D geometry in mm
-voxel_size_mm: 0.1  # Size of each voxel in mm
+voxel_size_mm: 0.25  # Size of each voxel in mm - was 0.1
 
 # Validation criteria
-min_feature_size_mm: 0.1  # Minimum acceptable feature size
+min_feature_size_mm: 0.5  # Minimum acceptable feature size (matches Stage 6 requirement)
 require_connected: false  # Require single connected fluid region
 
 # Output

@@ -69,12 +69,12 @@ def check_solid_connectivity(volume: np.ndarray) -> Dict[str, Any]:
     }
 
 
-def estimate_minimum_feature_size(volume: np.ndarray, voxel_size: float = 0.1) -> Dict[str, Any]:
+def estimate_minimum_feature_size(volume: np.ndarray, voxel_size: float = 0.25) -> Dict[str, Any]:
     """Estimate minimum feature size using distance transform.
     
     Args:
         volume: 3D binary array (1=fluid, 0=solid)
-        voxel_size: Size of each voxel in mm
+        voxel_size: Size of each voxel in mm (default: 0.25mm for remediation v1)
         
     Returns:
         Dictionary with feature size estimates
@@ -107,12 +107,12 @@ def estimate_minimum_feature_size(volume: np.ndarray, voxel_size: float = 0.1) -
     }
 
 
-def check_bounding_box(volume: np.ndarray, voxel_size: float = 0.1) -> Dict[str, Any]:
+def check_bounding_box(volume: np.ndarray, voxel_size: float = 0.25) -> Dict[str, Any]:
     """Check bounding box dimensions.
     
     Args:
         volume: 3D binary array
-        voxel_size: Size of each voxel in mm
+        voxel_size: Size of each voxel in mm (default: 0.25mm for remediation v1)
         
     Returns:
         Dictionary with bounding box info
@@ -132,8 +132,8 @@ def check_bounding_box(volume: np.ndarray, voxel_size: float = 0.1) -> Dict[str,
 
 def validate_geometry(
     volume: np.ndarray,
-    voxel_size: float = 0.1,
-    min_feature_size_mm: float = 0.1,
+    voxel_size: float = 0.25,  # REMEDIATION v1: was 0.1
+    min_feature_size_mm: float = 0.5,  # REMEDIATION v1: was 0.1, now matches Stage 6 requirement
     require_connected: bool = True
 ) -> Tuple[bool, Dict[str, Any], List[str]]:
     """Validate 3D geometry for mesh readiness.

@@ -11,14 +11,14 @@ from typing import Dict, Any, Optional
 def export_stl_from_volume(
     volume: np.ndarray,
     filepath: str,
-    voxel_size: float = 0.1
+    voxel_size: float = 0.25  # REMEDIATION v1: was 0.1
 ) -> bool:
     """Export 3D binary volume to STL file using marching cubes.
     
     Args:
         volume: 3D binary array (nz, ny, nx) where 1=fluid, 0=solid
         filepath: Output STL file path
-        voxel_size: Size of each voxel in mm
+        voxel_size: Size of each voxel in mm (default: 0.25mm for remediation v1)
         
     Returns:
         True if export succeeded, False otherwise
