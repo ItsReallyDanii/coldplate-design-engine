@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-06T11:51:44.526041+00:00",
+  "timestamp": "2026-03-06T11:53:38.972079+00:00",
   "stage": "stage6_structural",
-  "git_sha": "dac38fd286a8526351a8b42e2ae860cd06cfa596",
+  "git_sha": "9d05927c5f7ade5abf8a091623317ea0e3af3e30",
   "mode": "smoke",
   "input": {
     "stage5_dir": "results/stage5_thermal_smoke"
