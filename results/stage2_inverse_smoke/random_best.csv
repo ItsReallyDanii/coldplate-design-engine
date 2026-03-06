@@ -1,0 +1,2 @@
+rank,method,family,total_score,total_objective,total_penalty,is_valid,evaluation_num,seed,mask_id,param_threshold,param_wavelength_px,porosity,heat_exchange_area_proxy,hydraulic_resistance_proxy,flow_connectivity_score,dead_zone_fraction
+1,random_search,primitive_2d,309.34273059848596,309.34273059848596,0.0,True,3,45,primitive_2d_s45_eval3,-0.029768437262659708,19.483977143644104,0.5636,309.53762594698577,0.38979069699964924,1.0,0.0
