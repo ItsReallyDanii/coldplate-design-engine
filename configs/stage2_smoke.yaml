@@ -1,0 +1,16 @@
+# Stage 2 Smoke Test Configuration
+# Quick test with small grid and low budget
+
+grid:
+  nx: 50
+  ny: 50
+  dx: 0.0001  # meters
+  dy: 0.0001  # meters
+
+budget: 10  # Total evaluations
+seed: 42
+
+method: genetic  # "random" or "genetic"
+population_size: 5  # For genetic algorithm
+
+output_dir: results/stage2_inverse_smoke

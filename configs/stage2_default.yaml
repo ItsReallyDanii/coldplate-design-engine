@@ -1,0 +1,16 @@
+# Stage 2 Default Configuration
+# Full optimization run
+
+grid:
+  nx: 100
+  ny: 100
+  dx: 0.0001  # meters
+  dy: 0.0001  # meters
+
+budget: 100  # Total evaluations (per method for comparison)
+seed: 42
+
+method: genetic  # "random" or "genetic"
+population_size: 20  # For genetic algorithm
+
+output_dir: results/stage2_inverse
