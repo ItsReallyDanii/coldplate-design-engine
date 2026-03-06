@@ -1,0 +1,22 @@
+# Stage 3 Default Configuration
+# 3D geometry promotion and meshing readiness
+
+# Stage 2 source
+stage2_results: results/stage2_inverse/best_candidates.csv
+
+# Selection criteria
+top_k: 5  # Number of top candidates to promote
+family_filter: null  # Optional: filter by family (e.g., 'diamond_2d')
+valid_only: true  # Only promote valid candidates
+
+# 3D geometry parameters
+resolution: 100  # Grid resolution (nx=ny=nz)
+height_mm: 2.0  # Height of 3D geometry in mm
+voxel_size_mm: 0.1  # Size of each voxel in mm
+
+# Validation criteria
+min_feature_size_mm: 0.1  # Minimum acceptable feature size
+require_connected: false  # Require single connected fluid region
+
+# Output
+output_dir: results/stage3_geometry
