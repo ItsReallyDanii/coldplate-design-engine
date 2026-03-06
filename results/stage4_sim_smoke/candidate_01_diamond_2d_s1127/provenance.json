@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-06T10:20:45.352574Z",
+  "timestamp": "2026-03-06T13:04:38.168870Z",
   "stage": "stage4_sim",
   "schema_version": "1.0",
   "candidate_id": "candidate_01_diamond_2d_s1127",
-  "git_sha": "617eb6ab06191e624373f98dea65542e0e460bb7",
+  "git_sha": "764d85854961ae982f5690009b4e2a302fe2f6d5",
   "stage3_source": {
     "provenance": {
-      "timestamp": "2026-03-06T10:18:24.923970+00:00",
+      "timestamp": "2026-03-06T13:04:26.095312+00:00",
       "stage": "stage3_geometry",
       "schema_version": "1.0",
       "stage2_source": {
@@ -33,13 +33,13 @@
           "type": "3d_diamond_tpms",
           "threshold": -0.1371316497312011,
           "wavelength_px": 15.513267309547823,
-          "porosity": 0.555192,
+          "porosity": 0.557,
           "height_mm": 2.0,
-          "resolution": 50,
+          "resolution": 20,
           "dimensions": {
-            "nx": 50,
-            "ny": 50,
-            "nz": 50
+            "nx": 20,
+            "ny": 20,
+            "nz": 20
           },
           "candidate_rank": 1,
           "candidate_seed": 1127,
@@ -54,37 +54,37 @@
         "errors": []
       },
       "validation": {
-        "porosity": 0.555192,
+        "porosity": 0.557,
         "connectivity": {
           "num_fluid_components": 1,
-          "largest_component_size": 69399,
+          "largest_component_size": 4456,
           "largest_component_fraction": 1.0,
           "is_connected": true
         },
         "solid_connectivity": {
-          "num_solid_components": 1,
-          "largest_solid_component_size": 55601,
-          "largest_solid_component_fraction": 1.0,
-          "solid_is_connected": true
+          "num_solid_components": 4,
+          "largest_solid_component_size": 3541,
+          "largest_solid_component_fraction": 0.9991534988713319,
+          "solid_is_connected": false
         },
         "feature_sizes": {
-          "min_channel_diameter_mm": 0.2,
-          "min_wall_thickness_mm": 0.2,
+          "min_channel_diameter_mm": 0.5,
+          "min_wall_thickness_mm": 0.5,
           "min_channel_diameter_voxels": 2.0,
           "min_wall_thickness_voxels": 2.0
         },
         "bounding_box": {
           "dimensions_voxels": {
-            "nx": 50,
-            "ny": 50,
-            "nz": 50
+            "nx": 20,
+            "ny": 20,
+            "nz": 20
           },
           "dimensions_mm": {
             "x": 5.0,
             "y": 5.0,
             "z": 5.0
           },
-          "total_volume_mm3": 125.00000000000003
+          "total_volume_mm3": 125.0
         }
       },
       "exports": {
@@ -96,13 +96,13 @@
       "type": "3d_diamond_tpms",
       "threshold": -0.1371316497312011,
       "wavelength_px": 15.513267309547823,
-      "porosity": 0.555192,
+      "porosity": 0.557,
       "height_mm": 2.0,
-      "resolution": 50,
+      "resolution": 20,
       "dimensions": {
-        "nx": 50,
-        "ny": 50,
-        "nz": 50
+        "nx": 20,
+        "ny": 20,
+        "nz": 20
       },
       "candidate_rank": 1,
       "candidate_seed": 1127,
@@ -117,17 +117,17 @@
   "simulation": {
     "grid": {
       "shape": [
-        50,
-        50,
-        50
+        20,
+        20,
+        20
       ],
       "voxel_size_mm": 0.1,
       "domain_size_mm": [
-        5.0,
-        5.0,
-        5.0
+        2.0,
+        2.0,
+        2.0
       ],
-      "porosity": 0.555192
+      "porosity": 0.557
     },
     "boundary_conditions": {
       "inlet_pressure_pa": 102325.0,
@@ -143,7 +143,7 @@
       "method": "finite_difference",
       "converged": true,
       "iterations": 1,
-      "solve_time_s": 130.34328055381775,
+      "solve_time_s": 0.19047856330871582,
       "tolerance": 1e-06
     },
     "config": {
@@ -160,36 +160,36 @@
         "method": "pressure_poisson_solver"
       },
       "flow_rate": {
-        "flow_rate_m3_s": 0.0017567382919853743,
-        "flow_rate_lpm": 105.40429751912245,
+        "flow_rate_m3_s": 0.0007165706622347222,
+        "flow_rate_lpm": 42.99423973408333,
         "label": "SIMULATED",
         "method": "velocity_integration"
       },
       "velocity_statistics": {
-        "v_mean_m_s": 161.5132159659982,
-        "v_max_m_s": 305.9518176660595,
-        "v_min_m_s": 1.6964975902814003,
-        "v_std_m_s": 40.95922686869717,
-        "vz_mean_m_s": 139.222402601583,
+        "v_mean_m_s": 399.56890033485445,
+        "v_max_m_s": 774.868483169882,
+        "v_min_m_s": 2.2632171913360684,
+        "v_std_m_s": 127.18510072267442,
+        "vz_mean_m_s": 344.511151287091,
         "label": "SIMULATED",
         "method": "velocity_field_statistics"
       },
       "flow_uniformity": {
-        "coefficient_of_variation": 0.23993118490304355,
-        "maldistribution_factor": 1.8920361256949274,
+        "coefficient_of_variation": 0.3039640195161283,
+        "maldistribution_factor": 1.8257547202952318,
         "label": "SIMULATED",
         "method": "velocity_distribution_analysis"
       },
       "hydraulic_resistance": {
-        "hydraulic_resistance_pa_s_m3": 569236.7523166196,
+        "hydraulic_resistance_pa_s_m3": 1395535.7827256913,
         "label": "SIMULATED",
         "method": "resistance_from_dp_and_q"
       }
     },
     "geometric_quantities": {
-      "porosity": 0.555192,
-      "domain_volume_mm3": 125.0,
-      "fluid_volume_mm3": 69.399,
+      "porosity": 0.557,
+      "domain_volume_mm3": 8.0,
+      "fluid_volume_mm3": 4.456,
       "label": "GEOMETRIC",
       "method": "geometry_analysis"
     },
@@ -200,7 +200,7 @@
     "solver_info": {
       "converged": true,
       "iterations": 1,
-      "solve_time_s": 130.34328055381775
+      "solve_time_s": 0.19047856330871582
     }
   }
 }

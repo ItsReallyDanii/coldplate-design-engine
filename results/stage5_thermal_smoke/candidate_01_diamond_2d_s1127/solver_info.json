@@ -1,11 +1,11 @@
 {
   "converged": true,
-  "solve_time_s": 136.8528754711151,
-  "residual": 0.369108921890917,
+  "solve_time_s": 0.28880786895751953,
+  "residual": 0.05615795380148733,
   "solver": "direct_sparse",
   "matrix_shape": [
-    125000,
-    125000
+    8000,
+    8000
   ],
-  "matrix_nnz": 860000
+  "matrix_nnz": 53600
 }

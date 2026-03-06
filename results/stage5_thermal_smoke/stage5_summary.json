@@ -4,20 +4,20 @@
     {
       "candidate_id": "candidate_02_diamond_2d_s1045",
       "thermal_converged": true,
-      "thermal_solve_time_s": 135.4897997379303,
-      "thermal_resistance_k_w": 1.0296098572195402,
-      "T_max_c": 50.74024643048851,
-      "T_mean_c": 26.807937052989864,
-      "T_spread_c": 13.909284950367297
+      "thermal_solve_time_s": 0.32790327072143555,
+      "thermal_resistance_k_w": 11.265617018419787,
+      "T_max_c": 70.06246807367916,
+      "T_mean_c": 29.52302475310927,
+      "T_spread_c": 45.06243910549751
     },
     {
       "candidate_id": "candidate_01_diamond_2d_s1127",
       "thermal_converged": true,
-      "thermal_solve_time_s": 136.8528754711151,
-      "thermal_resistance_k_w": 1.0349706405416004,
-      "T_max_c": 50.874266013540016,
-      "T_mean_c": 26.853233903761247,
-      "T_spread_c": 13.840426106692487
+      "thermal_solve_time_s": 0.28880786895751953,
+      "thermal_resistance_k_w": 11.265617209376499,
+      "T_max_c": 70.062468837506,
+      "T_mean_c": 29.573489885550835,
+      "T_spread_c": 45.06243895712045
     }
   ]
 }
