@@ -57,7 +57,7 @@ def check_minimum_wall_thickness(
         'min_wall_thickness_mm': float(min_wall_mm),
         'mean_wall_thickness_mm': float(mean_wall_mm),
         'required_min_mm': min_thickness_mm,
-        'passes': passes,
+        'passes': bool(passes),
         'failure_mode': None if passes else 'wall_too_thin',
         'label': 'GEOMETRIC',
         'method': 'distance_transform_wall_thickness'
@@ -106,7 +106,7 @@ def check_minimum_feature_size(
         'min_channel_diameter_mm': float(min_channel_mm),
         'mean_channel_diameter_mm': float(mean_channel_mm),
         'required_min_mm': min_feature_mm,
-        'passes': passes,
+        'passes': bool(passes),
         'failure_mode': None if passes else 'feature_too_small',
         'label': 'GEOMETRIC',
         'method': 'distance_transform_feature_size'
@@ -172,7 +172,7 @@ def check_unsupported_regions(
         'max_unsupported_span_mm': float(max_unsupported_span_mm),
         'max_span_voxels': int(max_span_voxels),
         'required_max_mm': max_unsupported_mm,
-        'passes': passes,
+        'passes': bool(passes),
         'failure_mode': None if passes else 'excessive_overhang',
         'label': 'GEOMETRIC',
         'method': 'simplified_overhang_analysis',
@@ -231,8 +231,8 @@ def check_trapped_volumes(
     return {
         'num_fluid_components': int(num_components),
         'largest_component_fraction': float(largest_fraction),
-        'has_trapped_volumes': has_trapped,
-        'passes': passes,
+        'has_trapped_volumes': bool(has_trapped),
+        'passes': bool(passes),
         'failure_mode': None if passes else 'trapped_internal_volumes',
         'label': 'GEOMETRIC',
         'method': 'connected_component_analysis'

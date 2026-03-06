@@ -1,0 +1,39 @@
+{
+  "n_candidates": 2,
+  "n_pass_structural": 2,
+  "n_pass_manufacturability": 0,
+  "n_pass_overall": 0,
+  "pass_rate": 0.0,
+  "best_candidate": null,
+  "failure_mode_counts": {
+    "wall_too_thin": 2,
+    "feature_too_small": 2
+  },
+  "statistics": null,
+  "ranking": [
+    {
+      "candidate_id": "candidate_02_diamond_2d_s1045",
+      "overall_pass": false,
+      "structural_pass": true,
+      "manufacturability_pass": false,
+      "thermal_resistance_k_w": 1.0296098572195402,
+      "structural_margin": 1.8519988889209347,
+      "pressure_drop_pa": 1000.0,
+      "T_max_c": 50.74024643048851,
+      "composite_score": Infinity,
+      "rank": 1
+    },
+    {
+      "candidate_id": "candidate_01_diamond_2d_s1127",
+      "overall_pass": false,
+      "structural_pass": true,
+      "manufacturability_pass": false,
+      "thermal_resistance_k_w": 1.0349706405416004,
+      "structural_margin": 1.8376928030897837,
+      "pressure_drop_pa": 1000.0,
+      "T_max_c": 50.874266013540016,
+      "composite_score": Infinity,
+      "rank": 2
+    }
+  ]
+}

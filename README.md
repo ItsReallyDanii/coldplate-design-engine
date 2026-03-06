@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS; Stage 5 complete and PASS.** Literature population in progress (does not block execution).
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS; Stage 5 complete and PASS; Stage 6 complete and PASS.** Literature population in progress (does not block execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -10,7 +10,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 
 - `docs/` — target, baseline, stage-gate, and literature-review specifications.
 - `baselines/` — reference geometry families (`channels/`, `tpms/`, `topology_opt/`).
-- `src/` — staged code implementations (`stage1_2d/`, `stage2_inverse/`, `stage3_geometry/`, `stage35_physical/`, `stage4_sim/`, `stage5_thermal/`).
+- `src/` — staged code implementations (`stage1_2d/`, `stage2_inverse/`, `stage3_geometry/`, `stage35_physical/`, `stage4_sim/`, `stage5_thermal/`, `stage6_structural/`).
 - `claim_audit_v2/` — traceability for quantitative claims.
 - `data/`, `results/` — inputs and outputs for future stages.
 - `thermal_sponge_ref/` — literature reference archive; not shared code or results.
@@ -27,7 +27,8 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 3.5 | Physical-model corrections and validation | Pending |
 | 4 | Flow simulation under matched constraints | **Complete (PASS)** |
 | 5 | Thermal validation (flow-informed) | **Complete (PASS)** |
-| 6 | Prototype fabrication and bench testing | Pending |
+| 6 | Structural and manufacturability screening | **Complete (PASS)** |
+| 7 | Prototype fabrication and bench testing | Pending |
 | 7 | System integration and reliability screening | Pending |
 | 8 | Release and handoff with audited claims | Pending |
 
