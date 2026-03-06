@@ -57,7 +57,7 @@ If R_th is power-independent (single-phase, no boiling, linear conduction), the 
 
 Stage 4 predicts Q = 44.02 LPM (0.000734 m³/s) at ΔP = 1000 Pa for the candidate geometry. Through a domain cross-section of 4 mm² (2 × 2 mm), this implies a mean velocity of ~183 m/s. Through the porous volume (56% porosity), effective velocity is ~327 m/s.
 
-For water at 25 °C, this exceeds the speed of sound by approximately a factor of 0.22 (sound speed ≈ 1497 m/s) — not supersonic, but still 4–5 orders of magnitude above what any realistic porous-medium flow at 1000 Pa would produce.
+For water at 25 °C (sound speed ≈ 1497 m/s), the effective velocity reaches approximately 22% of the speed of sound — not supersonic, but still 4–5 orders of magnitude above what any realistic porous-medium flow at 1000 Pa would produce.
 
 Root cause: the Darcy solver assigns k_fluid = 1e-6 m² to fluid voxels. Real porous media permeabilities are 1e-12 to 1e-8 m². The solver is not validated for absolute flow-rate prediction.
 
