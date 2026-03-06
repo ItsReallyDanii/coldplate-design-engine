@@ -5,7 +5,7 @@
   "status": "LOCKED — do not modify after fabrication begins",
   "candidate_id": "candidate_02_diamond_2d_s1045",
   "stage3_source": "candidate_02_diamond_2d_s1045",
-  "simulation_domain_mm": 2.0,
+  "simulation_domain_mm": [2.0, 2.0, 2.0],
   "fabrication_target_mm": 5.0,
   "note_domain_mismatch": "All simulation predictions below were computed on a 2.0 x 2.0 x 2.0 mm domain (8 mm3). The fabricated specimen targets 5.0 x 5.0 x 5.0 mm. R_th and delta_P scale non-linearly with domain size. Acceptance bands (2x on R_th, 3x on delta_P) are intentionally wide to accommodate this mismatch. A corrected simulation at the 5 mm fabrication domain is recommended before declaring a quantitative model-to-bench comparison valid (STAGE7-AUD-001, H-2).",
   "thermal_resistance_KW": 11.265617018419787,
@@ -41,6 +41,6 @@
   },
   "stage5_source_path": "results/stage5_thermal_smoke/candidate_02_diamond_2d_s1045/thermal_metrics.json",
   "stage6_source_path": "results/stage6_structural_smoke/candidate_02_diamond_2d_s1045/structural_metrics.json",
-  "pipeline_git_sha": "PLACEHOLDER — replace with actual git SHA before fabrication begins",
+  "pipeline_git_sha": "800bba1d1a1911e32fa0f053771068ebce83c970",
   "note_pipeline_sha": "Record the git SHA at the time this simulation reference is locked. All bench comparisons must reference this SHA. See pipeline_git_sha.txt in this directory."
 }

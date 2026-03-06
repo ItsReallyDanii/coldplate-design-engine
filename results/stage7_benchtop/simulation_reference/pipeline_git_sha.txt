@@ -1,10 +1,1 @@
-PLACEHOLDER
-
-Replace this line with the actual git SHA of the repository at the time
-the simulation reference is locked (before fabrication begins).
-
-To record the SHA, run:
-  git rev-parse HEAD > results/stage7_benchtop/simulation_reference/pipeline_git_sha.txt
-
-The SHA must match the pipeline_git_sha field in simulation_reference_candidate_02.json.
-This file must not change after fabrication begins.
+800bba1d1a1911e32fa0f053771068ebce83c970

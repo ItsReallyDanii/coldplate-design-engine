@@ -57,22 +57,42 @@ run sheet.
 
 | Field | Value to record |
 |-------|----------------|
-| TIM type | (paste / pad / foil / solder / other) |
-| Product name and manufacturer | |
-| Lot or batch number | |
-| Thermal conductivity (W/m·K) | |
-| Typical bond-line thickness at specified clamp pressure (mm) | |
-| Expected thermal contact resistance at bond-line thickness (K·cm²/W) | |
-| Applied using | (syringe / spatula / pre-cut / other) |
-| Applied by | |
-| Clamp pressure or torque spec used | |
+| TIM type | Paste |
+| Product name and manufacturer | Shin-Etsu X-23-7921-5 (Shin-Etsu Chemical Co., Ltd.) |
+| Lot or batch number | *(fill in upon receipt — required before first specimen mount)* |
+| Thermal conductivity (W/m·K) | 6.0 W/(m·K) (manufacturer datasheet nominal) |
+| Typical bond-line thickness at specified clamp pressure (mm) | 0.10 mm at 50 psi clamp pressure (manufacturer datasheet) |
+| Expected thermal contact resistance at bond-line thickness (K·cm²/W) | 0.17 K·cm²/W (BLT / k = 0.10 mm / 6.0 W/(m·K) = 1.67×10⁻⁵ m²·K/W; rounded to 0.17 K·cm²/W for calculations) |
+| Applied using | Syringe (dot method) at center of heater face; spread by assembly pressure |
+| Applied by | *(fill in on test day)* |
+| Clamp pressure or torque spec used | 50 psi uniform clamp across 5 mm × 5 mm specimen face; verify with calibrated torque wrench |
 
-> **Why this matters:** TIM contact resistance adds directly to measured R_th.
-> For the 4 mm² heater footprint at nominal 25 W, even 0.5 K·cm²/W contact
-> resistance contributes approximately 12.5 K/W — comparable to the simulation
-> R_th of 11.27 K/W.  The simulation does not model contact resistance; the bench
-> comparison must account for it in the uncertainty budget (see STAGE7-AUD-001
-> W-4 and M-2).  TIM must be identical across all repeats.
+> **Why this matters (STAGE7-AUD-001 W-4):** TIM contact resistance adds
+> directly to measured R_th and is not modelled in the Stage 5 simulation.
+> The relevant area is the **heater footprint** (2 mm × 2 mm = 4 mm²
+> = 0.04 cm²), not the full specimen contact face.  A contact resistance
+> of 0.5 K·cm²/W at this footprint adds R_contact = 0.5 K·cm²/W / 0.04 cm²
+> = 12.5 K/W — comparable to the
+> simulation R_th of 11.27 K/W.  The selected TIM (Shin-Etsu X-23-7921-5)
+> has an expected contact resistance of 0.17 K·cm²/W, contributing
+> R_contact = 0.17 × 10⁻⁴ / 4×10⁻⁶ ≈ 4.25 K/W at the 4 mm² footprint.
+>
+> **Correction procedure (STAGE7-AUD-001 W-4):** Before applying the 2×
+> acceptance band (R_th_acceptance ≤ 22.53 K/W), subtract the estimated
+> TIM contact resistance from the measured R_th:
+>
+>   R_th_corrected = R_th_measured − R_contact_TIM
+>
+> where R_contact_TIM = (contact_resistance_K_cm2_W × 1e-4) / A_heater_m2.
+> With A_heater = 4 mm² = 4×10⁻⁶ m² and the selected TIM:
+>   R_contact_TIM = 0.17 × 1e-4 / 4e-6 = 4.25 K/W
+>
+> Apply the pass/fail band to R_th_corrected, not R_th_measured.
+> Record both values in the run summary JSON.
+>
+> TIM must be identical in type, product, lot, application method, and clamp
+> pressure across all repeats.  Any deviation must be flagged in the run
+> summary.
 
 **TIM application procedure:**
 
