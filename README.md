@@ -4,6 +4,8 @@
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
+**Tracked design hypothesis:** Functionally graded internal structures with spatially varying porosity fields are now tracked as a candidate design direction. This approach is not yet validated; it represents a hypothesis that non-uniform thermal and mechanical loading may benefit from graded internal structure. The target specification remains unchanged, and graded structures will be evaluated against uniform and segmented TPMS baselines when Stage 2-4 simulations become available.
+
 ## Repository layout
 
 - `docs/` — target, baseline, stage-gate, and literature-review specifications.
