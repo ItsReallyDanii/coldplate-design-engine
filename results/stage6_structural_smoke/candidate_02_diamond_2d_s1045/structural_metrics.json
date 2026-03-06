@@ -53,7 +53,7 @@
   "manufacturability_screened_quantities": {
     "wall_thickness": {
       "min_wall_thickness_mm": 0.2,
-      "mean_wall_thickness_mm": 0.20140757470907739,
+      "mean_wall_thickness_mm": 0.2013814396445047,
       "required_min_mm": 0.5,
       "passes": false,
       "failure_mode": "wall_too_thin",
@@ -62,7 +62,7 @@
     },
     "feature_size": {
       "min_channel_diameter_mm": 0.2,
-      "mean_channel_diameter_mm": 0.20149946950657782,
+      "mean_channel_diameter_mm": 0.20139883750454987,
       "required_min_mm": 0.5,
       "passes": false,
       "failure_mode": "feature_too_small",
@@ -80,8 +80,8 @@
       "note": "Simplified check; full AM simulation needed for fabrication"
     },
     "trapped_volumes": {
-      "num_fluid_components": 1273,
-      "largest_component_fraction": 0.9743274330628156,
+      "num_fluid_components": 1345,
+      "largest_component_fraction": 0.972705271424679,
       "has_trapped_volumes": true,
       "passes": true,
       "failure_mode": null,
@@ -194,11 +194,11 @@
     "flow_converged": true
   },
   "provenance": {
-    "timestamp": "2026-03-06T11:53:38.926972+00:00",
+    "timestamp": "2026-03-06T12:01:39.639304+00:00",
     "stage": "stage6_structural",
     "schema_version": "1.0",
     "candidate_id": "candidate_02_diamond_2d_s1045",
-    "git_sha": "9d05927c5f7ade5abf8a091623317ea0e3af3e30",
+    "git_sha": "e6eef8e980090666b2a3d1a9338a8515fc346d47",
     "stage5_source": {
       "candidate_id": "candidate_02_diamond_2d_s1045",
       "thermal_converged": true,
