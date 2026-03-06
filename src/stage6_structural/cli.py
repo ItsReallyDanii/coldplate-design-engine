@@ -144,7 +144,10 @@ def run_structural_screening(
             volume = reconstruct_volume_from_stage3(stage3_metadata)
             
             # Extract validation data from nested provenance structure
-            # Stage 3 stores validation at stage3_metadata['provenance']['validation']
+            # NOTE: Stage 4 stores Stage 3 metadata with structure:
+            #   stage3_metadata = { 'provenance': {...}, 'metadata': {...} }
+            # The validation data is nested at stage3_metadata['provenance']['validation'],
+            # NOT directly at stage3_metadata['validation']. This was a bug source before.
             stage3_prov = stage3_metadata.get('provenance', {})
             validation = stage3_prov.get('validation', {})
             feature_sizes = validation.get('feature_sizes', {})

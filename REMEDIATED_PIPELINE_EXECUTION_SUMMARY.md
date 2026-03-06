@@ -280,7 +280,7 @@ print('✓ Remediation validated')
 "
 ```
 
-Git SHA: `4778870` (includes Stage 6 bug fix)
+Git SHA: `6fce850f5e63bff80b8838eb2128bffa56b4c83a` (includes Stage 6 bug fix and documentation)
 
 ---
 

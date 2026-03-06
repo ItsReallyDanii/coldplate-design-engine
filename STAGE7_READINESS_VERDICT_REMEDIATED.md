@@ -48,7 +48,7 @@
 ### Pipeline Execution Summary
 
 **Execution Date:** 2026-03-06  
-**Git SHA:** 4778870  
+**Git SHA:** 6fce850f5e63bff80b8838eb2128bffa56b4c83a (includes Stage 6 bug fix and documentation)  
 **Pipeline:** Stage 3 → 4 → 5 → 6 (full rerun with remediated parameters)  
 
 **Stage 3 Configuration:**
