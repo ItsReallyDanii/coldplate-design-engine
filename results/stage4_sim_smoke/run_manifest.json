@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-03-06T10:09:20.267627Z",
+  "stage": "stage4_sim",
+  "git_sha": "unknown",
+  "config": {
+    "mode": "smoke",
+    "top_k": 2
+  },
+  "n_candidates": 2,
+  "candidate_ids": [
+    "candidate_01_diamond_2d_s1127",
+    "candidate_02_diamond_2d_s1045"
+  ]
+}

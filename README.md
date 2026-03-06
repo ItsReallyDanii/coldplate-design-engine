@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS.** Literature population in progress (does not block execution).
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS.** Literature population in progress (does not block execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -25,7 +25,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 2 | Inverse-design formulation | **Complete (PASS)** |
 | 3 | 3-D geometry generation and meshing | **Complete (PASS)** |
 | 3.5 | Physical-model corrections and validation | Pending |
-| 4 | CFD simulation under matched constraints | Pending |
+| 4 | CFD simulation under matched constraints | **Complete (PASS)** |
 | 5 | FEA structural validation | Pending |
 | 6 | Prototype fabrication and bench testing | Pending |
 | 7 | System integration and reliability screening | Pending |
@@ -129,6 +129,36 @@ pytest tests/test_stage3_*.py -v
 - **Stage 3 gate: PASS**
 
 **IMPORTANT:** Stage 3 generates 3D geometry only. Results do NOT establish thermal-hydraulic performance. CFD simulation (Stage 4) is required for flow and thermal claims.
+
+## Stage 4: Quick Start
+
+Stage 4 implements flow simulation validation on Stage 3 geometry. **Flow-only** at this stage; thermal coupling not yet implemented.
+
+**Run smoke test:**
+```bash
+python src/stage4_sim/cli.py smoke
+```
+
+**Run on Stage 3 outputs:**
+```bash
+python src/stage4_sim/cli.py run results/stage3_geometry results/stage4_sim
+```
+
+**Run tests:**
+```bash
+pytest tests/test_stage4_*.py -v
+```
+
+**See full documentation:** `docs/stage4_simulation.md`
+
+**Stage 4 Results:**
+- **Flow simulation operational** on Stage 3 geometry
+- Pressure drop and flow rate computed from actual solver
+- Fair comparison under matched boundary conditions
+- All quantities honestly labeled (SIMULATED vs GEOMETRIC vs NOT_COMPUTED)
+- **Stage 4 gate: PASS**
+
+**IMPORTANT:** Stage 4 provides **flow simulation only**. Thermal simulation not yet implemented. Results enable relative performance ranking but do NOT establish absolute thermal-hydraulic performance. All quantities are clearly labeled.
 
 ## Contributing
 
