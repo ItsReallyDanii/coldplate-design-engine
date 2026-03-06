@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-03-06T11:53:38.972079+00:00",
+  "stage": "stage6_structural",
+  "git_sha": "9d05927c5f7ade5abf8a091623317ea0e3af3e30",
+  "mode": "smoke",
+  "input": {
+    "stage5_dir": "results/stage5_thermal_smoke"
+  },
+  "output": {
+    "output_dir": "results/stage6_structural_smoke"
+  },
+  "execution": {
+    "n_candidates_processed": 2,
+    "n_candidates_pass": 0,
+    "pass_rate": 0.0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "n_candidates": 2,
+  "n_pass": 0,
+  "pass_rate": 0.0,
+  "best_candidate": null,
+  "matched_conditions": {
+    "matched": true,
+    "issues": [],
+    "note": "Load cases vary per candidate based on flow/thermal results (expected)"
+  }
+}

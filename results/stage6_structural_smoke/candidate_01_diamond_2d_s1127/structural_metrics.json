@@ -1,0 +1,235 @@
+{
+  "candidate_id": "candidate_01_diamond_2d_s1127",
+  "structural_screened_quantities": {
+    "pressure_stress": {
+      "sigma_nominal_mpa": 0.511625,
+      "sigma_max_mpa": 1.02325,
+      "stress_concentration_factor": 2.0,
+      "allowable_stress_mpa": 92.0,
+      "margin_of_safety": 88.90960175910091,
+      "passes": true,
+      "failure_mode": null,
+      "label": "ANALYTICAL",
+      "method": "thin_wall_pressure_vessel_approximation",
+      "note": "Conservative upper bound for screening"
+    },
+    "thermal_stress": {
+      "sigma_thermal_unconstrained_mpa": 62.79490911928666,
+      "sigma_thermal_effective_mpa": 31.39745455964333,
+      "constraint_factor": 0.5,
+      "delta_T_c": 25.8742645383398,
+      "allowable_stress_mpa": 92.0,
+      "margin_of_safety": 1.930173840214807,
+      "passes": true,
+      "failure_mode": null,
+      "label": "ANALYTICAL",
+      "method": "thermal_expansion_stress_approximation",
+      "note": "Reduced constraint factor for cellular structure"
+    },
+    "deflection": {
+      "deflection_mm": 1.9306603773584905e-05,
+      "allowable_deflection_mm": 0.013888888888888888,
+      "deflection_to_span_ratio": 3.861320754716981e-06,
+      "margin_of_safety": 718.3854005483616,
+      "passes": true,
+      "failure_mode": null,
+      "label": "ANALYTICAL",
+      "method": "plate_bending_approximation",
+      "note": "Conservative estimate for screening"
+    },
+    "combined_stress": {
+      "sigma_combined_mpa": 32.420704559643326,
+      "allowable_stress_mpa": 92.0,
+      "margin_of_safety": 1.8376928030897837,
+      "passes": true,
+      "label": "ANALYTICAL",
+      "method": "linear_superposition"
+    },
+    "overall_structural_pass": true,
+    "structural_failure_modes": [],
+    "label": "STRUCTURAL_SCREENED",
+    "method": "analytical_structural_screening"
+  },
+  "manufacturability_screened_quantities": {
+    "wall_thickness": {
+      "min_wall_thickness_mm": 0.2,
+      "mean_wall_thickness_mm": 0.20148224057746955,
+      "required_min_mm": 0.5,
+      "passes": false,
+      "failure_mode": "wall_too_thin",
+      "label": "GEOMETRIC",
+      "method": "distance_transform_wall_thickness"
+    },
+    "feature_size": {
+      "min_channel_diameter_mm": 0.2,
+      "mean_channel_diameter_mm": 0.20146438803253514,
+      "required_min_mm": 0.5,
+      "passes": false,
+      "failure_mode": "feature_too_small",
+      "label": "GEOMETRIC",
+      "method": "distance_transform_feature_size"
+    },
+    "unsupported_regions": {
+      "max_unsupported_span_mm": 0.1,
+      "max_span_voxels": 1,
+      "required_max_mm": 10.0,
+      "passes": true,
+      "failure_mode": null,
+      "label": "GEOMETRIC",
+      "method": "simplified_overhang_analysis",
+      "note": "Simplified check; full AM simulation needed for fabrication"
+    },
+    "trapped_volumes": {
+      "num_fluid_components": 1299,
+      "largest_component_fraction": 0.9734528860779762,
+      "has_trapped_volumes": true,
+      "passes": true,
+      "failure_mode": null,
+      "label": "GEOMETRIC",
+      "method": "connected_component_analysis"
+    },
+    "overall_manufacturability_pass": false,
+    "manufacturability_failure_modes": [
+      "wall_too_thin",
+      "feature_too_small"
+    ],
+    "label": "MANUFACTURABILITY_SCREENED",
+    "method": "geometry_based_manufacturability_screening"
+  },
+  "material_properties": {
+    "material_name": "Aluminum 6061-T6",
+    "E_gpa": 68.9,
+    "yield_strength_mpa": 276.0,
+    "allowable_stress_mpa": 92.0,
+    "safety_factor": 3.0,
+    "label": "LITERATURE",
+    "source": "ASM_Metals_Handbook"
+  },
+  "stage6_verdict": {
+    "overall_pass": false,
+    "structural_pass": true,
+    "manufacturability_pass": false,
+    "all_failure_modes": [
+      "wall_too_thin",
+      "feature_too_small"
+    ],
+    "screening_level": "PRELIMINARY",
+    "note": "Screening-level analysis only; full FEA and fabrication validation required before production"
+  },
+  "thermal_simulated_quantities": {
+    "temperature_statistics": {
+      "T_mean_c": 26.853233903761247,
+      "T_max_c": 50.874266013540016,
+      "T_min_c": 25.000001475200214,
+      "T_std_c": 3.224849416589237,
+      "T_range_c": 25.8742645383398,
+      "T_solid_mean_c": 28.2657486264397,
+      "T_solid_max_c": 39.231777122383015,
+      "T_solid_min_c": 25.391351015690528,
+      "T_fluid_mean_c": 25.721557206753438,
+      "T_fluid_max_c": 50.874266013540016,
+      "T_fluid_min_c": 25.000001475200214,
+      "label": "SIMULATED",
+      "method": "thermal_field_statistics"
+    },
+    "thermal_resistance": {
+      "thermal_resistance_k_w": 1.0349706405416004,
+      "delta_T_max_c": 25.874266013540016,
+      "heat_input_w": 25.000000000000004,
+      "label": "SIMULATED",
+      "method": "thermal_resistance_calculation"
+    },
+    "uniformity": {
+      "coefficient_of_variation": 0.12202493789045775,
+      "temperature_spread_c": 13.840426106692487,
+      "label": "SIMULATED",
+      "method": "temperature_uniformity_analysis"
+    }
+  },
+  "flow_simulated_quantities": {
+    "pressure_drop": {
+      "pressure_drop_pa": 1000.0,
+      "inlet_pressure_pa": 102325.0,
+      "outlet_pressure_pa": 101325.0,
+      "label": "FLOW_SIMULATED",
+      "method": "pressure_poisson_solver"
+    },
+    "flow_rate": {
+      "flow_rate_m3_s": 0.0017567382919853743,
+      "flow_rate_lpm": 105.40429751912245,
+      "label": "FLOW_SIMULATED",
+      "method": "velocity_integration"
+    },
+    "velocity_statistics": {
+      "v_mean_m_s": 161.5132159659982,
+      "v_max_m_s": 305.9518176660595,
+      "v_min_m_s": 1.6964975902814003,
+      "v_std_m_s": 40.95922686869717,
+      "vz_mean_m_s": 139.222402601583,
+      "label": "FLOW_SIMULATED",
+      "method": "velocity_field_statistics"
+    },
+    "flow_uniformity": {
+      "coefficient_of_variation": 0.23993118490304355,
+      "maldistribution_factor": 1.8920361256949274,
+      "label": "FLOW_SIMULATED",
+      "method": "velocity_distribution_analysis"
+    },
+    "hydraulic_resistance": {
+      "hydraulic_resistance_pa_s_m3": 569236.7523166196,
+      "label": "FLOW_SIMULATED",
+      "method": "resistance_from_dp_and_q"
+    }
+  },
+  "geometric_quantities": {
+    "porosity": 0.555192,
+    "domain_volume_mm3": 125.0,
+    "fluid_volume_mm3": 69.399,
+    "label": "GEOMETRIC",
+    "method": "geometry_analysis"
+  },
+  "provenance_summary": {
+    "stage5_source": "candidate_01_diamond_2d_s1127",
+    "thermal_converged": true,
+    "flow_converged": true
+  },
+  "provenance": {
+    "timestamp": "2026-03-06T11:53:38.968762+00:00",
+    "stage": "stage6_structural",
+    "schema_version": "1.0",
+    "candidate_id": "candidate_01_diamond_2d_s1127",
+    "git_sha": "9d05927c5f7ade5abf8a091623317ea0e3af3e30",
+    "stage5_source": {
+      "candidate_id": "candidate_01_diamond_2d_s1127",
+      "thermal_converged": true,
+      "thermal_solve_time_s": 136.8528754711151
+    },
+    "material": {
+      "name": "Aluminum 6061-T6",
+      "label": "LITERATURE",
+      "source": "ASM_Metals_Handbook"
+    },
+    "load_cases": {
+      "pressure": {
+        "type": "internal_pressure",
+        "pressure_pa": 102325.0,
+        "label": "ANALYTICAL"
+      },
+      "thermal": {
+        "type": "thermal_expansion",
+        "delta_T_c": 25.8742645383398,
+        "label": "ANALYTICAL"
+      }
+    },
+    "screening_parameters": {
+      "structural_method": "analytical_approximation",
+      "manufacturability_method": "geometric_analysis",
+      "screening_level": "PRELIMINARY"
+    },
+    "manufacturability_requirements": {
+      "min_wall_thickness_mm": 0.5,
+      "min_feature_size_mm": 0.5,
+      "max_unsupported_mm": 10.0
+    }
+  }
+}
