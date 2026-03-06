@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 in progress. Documentation only—no CFD, FEA, or optimization results are present yet.
+**Status:** Stage 0 complete; Stage 0.5 planning complete; literature population in progress. Documentation only—no CFD, FEA, or optimization results are present yet.
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
