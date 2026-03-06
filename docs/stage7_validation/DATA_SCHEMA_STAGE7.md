@@ -2,8 +2,15 @@
 
 **Document ID:** STAGE7-DS-001  
 **Date:** 2026-03-06  
-**Status:** PROPOSED  
+**Status:** PROPOSED — RECONCILED PER AUDIT MEMO STAGE7-AUD-001  
 **Companion to:** BENCHTOP_VALIDATION_PLAN.md, ARTIFACT_LAYOUT.md  
+
+> **Reconciliation note (STAGE7-AUD-001, 2026-03-06):** Section 6 (simulation reference
+> schema) adds `heat_flux_w_m2`, `total_power_w`, and `simulation_domain_mm` fields to
+> allow future readers to verify the Stage 5 R_th denominator (4 W, not 25 W) and the
+> domain size (2 mm, not 5 mm).  The schema version is incremented to 1.1.0 (additive
+> change).  Example data updated to remove the non-physical Q_LPM = 43.8 value from the
+> illustration.
 
 ---
 
@@ -39,11 +46,16 @@ Define the data formats, field names, and provenance metadata for all Stage 7 be
 
 ### 2.3 Example
 
+> **Note:** The Q_LPM column below is retained for schema illustration only.  The Stage 4
+> predicted Q of ~44 LPM is non-physical (see BENCHTOP_VALIDATION_PLAN.md Section 11.1).
+> Real bench Q values will differ substantially.  Record actual measured Q; do not compare
+> to Stage 4 output.
+
 ```csv
 timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
-0.000,25.01,25.02,25.05,25.03,101825.3,101325.0,43.8,0.00
-1.000,25.01,25.03,28.44,25.10,101830.1,101325.2,43.9,25.02
-2.000,25.02,25.05,31.22,25.18,101828.7,101324.8,43.8,25.01
+0.000,25.01,25.02,25.05,25.03,101825.3,101325.0,MEASURED,0.00
+1.000,25.01,25.03,28.44,25.10,101830.1,101325.2,MEASURED,25.02
+2.000,25.02,25.05,31.22,25.18,101828.7,101324.8,MEASURED,25.01
 ```
 
 ---
@@ -76,9 +88,10 @@ timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
     "T_out_C": "float",
     "T_heater_C": "float",
     "T_top_C": "float",
+    "T_amb_C": "float — ambient temperature at test section, recorded at start/end of each run",
     "P_in_Pa": "float",
     "P_out_Pa": "float",
-    "Q_LPM": "float"
+    "Q_LPM": "float — MEASURED bench value; not Stage 4 prediction"
   },
   "derived": {
     "dP_Pa": "float — P_in - P_out",
@@ -88,6 +101,7 @@ timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
   },
   "quality": {
     "steady_state_met": "boolean",
+    "steady_state_channel": "string — channel evaluated for steady-state criterion (typically T_heater)",
     "max_T_drift_Cmin": "float — max temperature drift in recording window",
     "energy_balance_closure_pct": "float",
     "notes": "string — free text"
@@ -105,9 +119,13 @@ timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
 
 ### 3.3 Example
 
+> **Note:** `Q_LPM` in the example below is a placeholder.  The actual value will be
+> determined from bench measurement.  The Stage 4 predicted Q of ~44 LPM is non-physical
+> and is not used here.
+
 ```json
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "test_id": "B-01-R1",
   "candidate_id": "candidate_02_diamond_2d_s1045",
   "phase": "B",
@@ -116,7 +134,7 @@ timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
   "conditions": {
     "P_elec_setpoint_W": 25.0,
     "T_in_setpoint_C": 25.0,
-    "flow_target": "Adjust pump to achieve dP ~ 1000 Pa"
+    "flow_target": "Adjust pump to achieve dP ~ 1000 Pa; record resulting Q as MEASURED"
   },
   "measured_means": {
     "P_elec_W": 25.02,
@@ -126,16 +144,18 @@ timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
     "T_top_C": 28.30,
     "P_in_Pa": 101830.0,
     "P_out_Pa": 101325.0,
-    "Q_LPM": 43.8
+    "Q_LPM": "MEASURED — record actual value; do not use Stage 4 44 LPM prediction",
+    "T_amb_C": 22.5
   },
   "derived": {
     "dP_Pa": 505.0,
     "R_th_KW": 0.699,
-    "R_hyd_Pasm3": 691780.0,
+    "R_hyd_Pasm3": "DERIVED from measured Q",
     "energy_balance": 0.93
   },
   "quality": {
     "steady_state_met": true,
+    "steady_state_channel": "T_heater",
     "max_T_drift_Cmin": 0.15,
     "energy_balance_closure_pct": 93.0,
     "notes": ""
@@ -287,7 +307,7 @@ For traceability, include a snapshot of simulation predictions alongside test da
 
 ```json
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "candidate_id": "string",
   "pipeline_git_sha": "string",
   "stage3": {
@@ -299,15 +319,20 @@ For traceability, include a snapshot of simulation predictions alongside test da
     "min_feature_size_mm": "float"
   },
   "stage4": {
+    "simulation_domain_mm": ["float", "float", "float"],
     "pressure_drop_Pa": "float",
-    "flow_rate_m3s": "float",
-    "flow_rate_LPM": "float",
-    "hydraulic_resistance_Pasm3": "float",
-    "label": "FLOW_SIMULATED"
+    "flow_rate_m3s": "float — NON-PHYSICAL: Darcy solver artifact; do not use for equipment sizing",
+    "flow_rate_LPM": "float — NON-PHYSICAL: see flow_rate_m3s note",
+    "hydraulic_resistance_Pasm3": "float — NON-PHYSICAL: derived from non-physical Q",
+    "label": "FLOW_SIMULATED",
+    "caveat": "All Stage 4 flow quantities are from a Darcy solver with k_fluid=1e-6 m². Mean velocity implied by predicted Q is ~183 m/s at DP=1000 Pa — non-physical for water. Use DP=1000 Pa as the bench target; do not use Q or R_hyd predictions for acceptance criteria or procurement."
   },
   "stage5": {
-    "thermal_resistance_KW": "float",
-    "peak_temperature_C": "float",
+    "simulation_domain_mm": ["float", "float", "float"],
+    "heat_flux_w_m2": "float — boundary condition applied in Stage 5 (1e6 W/m²)",
+    "total_power_w": "float — actual heat input = heat_flux × heated_area (4.0 W for 2 mm domain)",
+    "thermal_resistance_KW": "float — computed as delta_T_max / total_power_w",
+    "peak_temperature_C": "float — at total_power_w, not at bench power",
     "mean_temperature_C": "float",
     "label": "SIMULATED"
   },
@@ -330,8 +355,8 @@ All reported quantities must carry a label indicating their provenance:
 
 | Label | Meaning | Example |
 |-------|---------|---------|
-| `SIMULATED` | Output of Stage 5 thermal solver (analytical) | R_th = 11.27 K/W |
-| `FLOW_SIMULATED` | Output of Stage 4 flow solver (analytical) | Q = 44.02 LPM |
+| `SIMULATED` | Output of Stage 5 thermal solver (analytical) | R_th = 11.27 K/W (**2 mm domain, 4 W heat input**) |
+| `FLOW_SIMULATED` | Output of Stage 4 flow solver (analytical, Darcy) — **non-physical for absolute Q; use ΔP only** | Q = 44.02 LPM (**non-physical — Darcy artifact**) |
 | `STRUCTURAL_SCREENED` | Output of Stage 6 structural screening (analytical) | σ_combined = 55.7 MPa |
 | `MANUFACTURABILITY_SCREENED` | Output of Stage 6 manufacturability check | min_wall = 0.5 mm |
 | `LITERATURE` | From published literature or material data sheet | E = 68.9 GPa |
@@ -362,7 +387,7 @@ Examples:
 ## 9. Versioning
 
 - Schema version follows semver (`major.minor.patch`).
-- Current version: `1.0.0`.
+- Current version: `1.1.0` (reconciliation update: added `heat_flux_w_m2`, `total_power_w`, `simulation_domain_mm`, `caveat` fields to simulation reference; added `steady_state_channel` to quality block; added `T_amb_C` to measured_means).
 - Breaking changes (column removal, type change) increment major version.
 - Additive changes (new optional columns) increment minor version.
 - All files include `schema_version` field for forward compatibility.

@@ -2,8 +2,14 @@
 
 **Document ID:** STAGE7-INS-001  
 **Date:** 2026-03-06  
-**Status:** PROPOSED  
+**Status:** PROPOSED — RECONCILED PER AUDIT MEMO STAGE7-AUD-001  
 **Companion to:** BENCHTOP_VALIDATION_PLAN.md, TEST_MATRIX.md  
+
+> **Reconciliation note (STAGE7-AUD-001, 2026-03-06):** Section 2.3 corrects the flow
+> meter specification.  The original 0–100 LPM range was based on the Stage 4 predicted
+> Q = 44.02 LPM, which is non-physical.  The flow meter range must be set from a
+> physics-based estimate before procurement.  The procurement checklist has been updated
+> accordingly.  Ambient temperature sensor added to measurement channels.
 
 ---
 
@@ -15,12 +21,13 @@
 | T_out | Outlet coolant temperature | Type-T thermocouple | 1 | Yes |
 | T_heater | Heater surface temperature | Type-T thermocouple, embedded | 1 | Yes |
 | T_top | Cold plate top surface temperature | Type-T thermocouple, surface-mount | 1 | No (informational) |
+| T_amb | Room ambient temperature | Type-T thermocouple or thermistor, free air | 1 | Yes (parasitic loss scaling) |
 | P_in | Inlet pressure | Pressure transducer | 1 | Yes |
 | P_out | Outlet pressure | Pressure transducer | 1 | Yes |
 | Q | Volumetric flow rate | Turbine or ultrasonic flow meter | 1 | Yes |
 | P_elec | Heater electrical power | Power meter (V × I) | 1 | Yes |
 
-Total analog channels required: 8 minimum.
+Total analog channels required: 9 minimum.
 
 ---
 
@@ -67,11 +74,24 @@ Total analog channels required: 8 minimum.
 
 ### 2.3 Flow Meter
 
+> **STOP — read before specifying range (audit finding W-2 / H-1):**  The Stage 4
+> predicted flow rate of 44.02 LPM at ΔP = 1000 Pa is non-physical.  It implies a mean
+> fluid velocity of approximately 183 m/s through a 4 mm² cross-section — an artifact of
+> Darcy permeability k = 1e-6 m² assigned to fluid voxels, not a calibrated physical
+> prediction.  Real flow rates through a 5 mm TPMS cold plate at 1000 Pa are expected to
+> be orders of magnitude lower (likely mL/min range).  **Do not procure the flow meter
+> based on the 44 LPM Stage 4 output.**
+>
+> Before procuring, derive a physics-based flow-rate estimate using the Hagen-Poiseuille
+> or Ergun equation with the effective channel diameter from Stage 3 geometry or the
+> pre-test CT scan.  Size the meter to cover 0.1× to 10× that estimate with acceptable
+> accuracy at the low end (≥ ±5% of reading at minimum expected flow).
+
 | Parameter | Specification |
 |-----------|--------------|
-| Type | Turbine, ultrasonic (transit-time), or Coriolis |
-| Range | 0–100 LPM (must cover expected ~44 LPM and sweep range) |
-| Accuracy | ±2% of reading (or better) |
+| Type | Turbine, ultrasonic (transit-time), Coriolis, or micro-flow meter — depending on the physics-based flow estimate |
+| Range | **TBD — set after physics-based pre-test estimate; do not use Stage 4 Q output** |
+| Accuracy | ±2% of reading at the expected operating flow rate (or better) |
 | Output | Pulse (turbine) or analog/digital |
 | Wetted material | Compatible with DI water |
 | Quantity | 1 |
@@ -82,7 +102,7 @@ Total analog channels required: 8 minimum.
 - ≥ 10D straight pipe upstream of meter, ≥ 5D downstream.
 - Verify against timed volumetric collection (bucket test) at campaign start.
 
-**Note on flow range:** Stage 4 predicts 44 LPM for candidate_02 at ΔP = 1000 Pa. This is an analytical estimate. Actual flow rates may differ significantly. Select meter range to cover 0.3× to 3× predicted (13–132 LPM). If actual flows are much lower than predicted, ensure meter accuracy is acceptable at the lower range.
+**Note on flow range:** Stage 4 predicts 44 LPM for candidate_02 at ΔP = 1000 Pa. This prediction is non-physical (see note above) and must not be used to set the meter range. Actual flow rates may be orders of magnitude lower. If actual bench flow falls below the accuracy floor of the installed meter, record the limitation and consult with an instrumentation engineer before reporting Q-derived quantities.
 
 ### 2.4 Power Meter
 
@@ -174,7 +194,14 @@ Total analog channels required: 8 minimum.
 | Power (P_elec) | ±1% reading | ±0.11 K/W (~1%) | — |
 | **Combined (RSS)** | — | **~±1.1%** | **~±5.1%** |
 
-These are instrument-level uncertainties. Systematic errors (parasitic heat loss, fixture conduction, pressure-tap misalignment) are not included. Minimize systematically through insulation, consistent tap placement, and energy-balance closure checks.
+These are instrument-level (random) uncertainties only. Systematic errors are not included in the above and may dominate:
+
+- **Contact resistance** (heater-to-specimen interface): Adds directly to measured R_th. Estimate from TIM specification and clamping torque. Must be reported in test record.
+- **Fixture parasitic losses**: 5–20% of applied power at small specimen scale. Characterize using fixture-loss calibration run (BENCHTOP_VALIDATION_PLAN.md Section 9.2, Step 0) before Phase B.
+- **Pressure-tap alignment**: Asymmetric taps or partially blocked taps bias ΔP. Inspect taps before each session.
+- **Ambient temperature drift**: Parasitic losses scale with (T_heater − T_ambient). Record T_amb at start and end of each run; flag runs with > 3 °C ambient shift.
+
+Minimize systematic errors through insulation, consistent tap placement, and energy-balance closure checks. Quantify fixture losses before Phase B.
 
 ---
 
@@ -208,16 +235,18 @@ These are not required for Stage 7 pass/fail determination but provide additiona
 
 | Item | Qty | Status |
 |------|-----|--------|
-| Type-T thermocouple, 30 AWG, exposed junction | 4 | NOT PROCURED |
+| Type-T thermocouple, 30 AWG, exposed junction | 5 (add 1 for T_amb) | NOT PROCURED |
 | Pressure transducer, 0–5 kPa differential, ±0.5% FS | 1 (or 2 absolute) | NOT PROCURED |
-| Flow meter, 0–100 LPM, ±2%, DI water compatible | 1 | NOT PROCURED |
+| Flow meter — **range TBD from physics-based pre-test estimate; do not use Stage 4 Q output; see Section 2.3** | 1 | NOT PROCURED |
 | Power meter or V + I sensors, ±1% | 1 set | NOT PROCURED |
-| DAQ system, ≥ 8 channels, ≥ 16-bit, TC-compatible | 1 | NOT PROCURED |
+| DAQ system, ≥ 9 channels, ≥ 16-bit, TC-compatible | 1 | NOT PROCURED |
 | Heater, thin-film or cartridge, 50 W max | 1 | NOT PROCURED |
 | DC power supply, 0–50 W, controlled | 1 | NOT PROCURED |
 | Chiller or constant-temperature bath, 25 °C ± 1 °C | 1 | NOT PROCURED |
-| Pump, variable-speed, 0–100+ LPM | 1 | NOT PROCURED |
-| Tubing, fittings, O-rings, thermal paste | Assorted | NOT PROCURED |
+| Pump — **capacity TBD from physics-based pre-test flow estimate; do not size to 100 LPM; see Section 2.3 note** | 1 | NOT PROCURED |
+| Thermal interface material (paste or foil) — specify type before ordering | 1 | NOT PROCURED |
+| Reference block for fixture-loss calibration (Al 6061 billet, known conductivity) | 1 | NOT PROCURED |
+| Tubing, fittings, O-rings | Assorted | NOT PROCURED |
 | Relief valve, E-stop, GFCI, drip tray | 1 each | NOT PROCURED |
 
 ---
