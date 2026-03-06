@@ -1,5 +1,11 @@
 # Source Capture Template
 
+## Source ID
+- Identifier such as `LIT-001`, `LIT-002`, or `LIT-003`.
+
+## Potential claim-audit linkage (optional, later)
+- Note any claim-audit entry that this source might support once formalized.
+
 ## Citation
 - Authors, title, venue, year, DOI or URL.
 
@@ -26,4 +32,3 @@
 
 ## Stage applicability
 - Whether the source informs Stage 1, 2, 3, 4, or 5; include brief justification.
-

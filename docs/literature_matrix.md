@@ -1,6 +1,6 @@
 # Literature Matrix
 
-Use a consistent Source ID that matches any entry in `claim_audit_v2/`. Populate each section with rows as literature is captured; keep metrics traceable to the source.
+Use a consistent Source ID such as `LIT-001`, `LIT-002`, or `LIT-003`. Populate each section with rows as literature is captured; keep metrics traceable to the source. Literature sources may later be linked to claim-audit entries when they directly support a formal claim.
 
 ## Direct-to-chip cold plates
 | Source ID | Title | Year | Domain | Component Type | Baseline Type | Coolant | Heat Flux / Load | Pressure Drop Metric | Thermal Resistance Metric | Figure of Merit | Geometry Notes | Manufacturing Notes | Validation Type | Key Result | Relevance to Repo | Follow-up Needed |
@@ -36,4 +36,3 @@ Use a consistent Source ID that matches any entry in `claim_audit_v2/`. Populate
 | Source ID | Title | Year | Domain | Component Type | Baseline Type | Coolant | Heat Flux / Load | Pressure Drop Metric | Thermal Resistance Metric | Figure of Merit | Geometry Notes | Manufacturing Notes | Validation Type | Key Result | Relevance to Repo | Follow-up Needed |
 |-----------|-------|------|--------|----------------|---------------|---------|------------------|----------------------|---------------------------|-----------------|----------------|---------------------|-----------------|------------|-------------------|------------------|
 | | | | | | | | | | | | | | | | | |
-
