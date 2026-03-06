@@ -24,7 +24,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
 | 2 | Inverse-design formulation | **Complete (PASS)** |
 | 3 | 3-D geometry generation and meshing | **Complete (PASS)** |
-| 3.5 | Physical-model corrections and validation | Pending |
+| 3.5 | Physical-model corrections and validation | Complete |
 | 4 | Flow simulation under matched constraints | **Complete (PASS)** |
 | 5 | Thermal validation (flow-informed) | **Complete (PASS)** |
 | 6 | Structural and manufacturability screening | **Complete (PASS)** |
