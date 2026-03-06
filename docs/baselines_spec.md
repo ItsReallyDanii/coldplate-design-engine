@@ -20,7 +20,7 @@ Baseline evaluations will use parameter sweeps, not single-point baselines.
 ## Operating conditions
 
 - Single-phase liquid coolant with matched inlet temperature, mass flow rate, and pressure budget across all baselines.
-- Heat load and die-footprint boundary conditions set to the target application; spatial heat-flux mapping will mirror the test case used for candidate designs.
+- Heat load and die-footprint boundary conditions set to the target application; spatial heat-flux mapping will mirror the Stage 1 entry test case defined for candidate designs.
 - Conjugate heat transfer is assumed; solid material properties will be held consistent across baselines for fair comparison.
 
 ## Matched constraints

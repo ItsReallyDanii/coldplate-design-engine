@@ -4,7 +4,7 @@
 
 | Stage | Purpose | Deliverable | Pass Gate | Kill Sign |
 |-------|---------|-------------|-----------|-----------|
-| 0 | Repository scaffold and target definition | Completed `target_spec.md`, `baselines_spec.md`, `stage_gates.md`, and `literature_review_checklist.md` shells | Target statement captured; baseline families and matched-constraint approach documented | Missing target statement or undefined comparison scope |
+| 0 | Repository scaffold and target definition | Stage-0 drafts of `target_spec.md`, `baselines_spec.md`, `stage_gates.md`, and `literature_review_checklist.md` with scoped content filled | Target statement captured; baseline families and matched-constraint approach documented at Stage-0 depth | Missing target statement or undefined comparison scope |
 | 0.5 | Literature review and constraint locking | Cited checklist, locked parameter ranges, and updated documents with literature-backed constraints | All high-priority checklist items cited; matched-constraint settings and sweep plans defined | Uncited quantitative claims or unresolved operating constraints |
 | 1 | 2-D surrogate modeling and parameter sweeps | Validated 2-D thermal-hydraulic model with sweep dataset and fitted surrogate | Surrogate error bounded; baselines mapped across sweeps | Model not validated or sweep coverage gaps |
 | 2 | Inverse-design problem setup | Formal optimization problem and candidate geometry from surrogate runs | Candidate outperforms baselines on surrogate under matched constraints | Optimizer unstable or violates constraints |
