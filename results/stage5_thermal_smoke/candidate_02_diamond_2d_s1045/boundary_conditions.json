@@ -1,0 +1,18 @@
+{
+  "heat_flux_w_m2": 1000000.0,
+  "inlet_temperature_c": 25.0,
+  "ambient_temperature_c": 25.0,
+  "wall_bc_type": "adiabatic",
+  "bottom_bc_type": "heat_flux",
+  "top_bc_type": "adiabatic",
+  "outlet_bc_type": "convective",
+  "k_solid_w_m_k": 200.0,
+  "k_fluid_w_m_k": 0.6,
+  "rho_fluid_kg_m3": 1000.0,
+  "cp_fluid_j_kg_k": 4180.0,
+  "mu_fluid_pa_s": 0.001,
+  "use_flow_informed_h": true,
+  "h_base_w_m2_k": 1000.0,
+  "bc_label": "MATCHED_THERMAL_BC_V1",
+  "description": "Matched thermal boundary conditions for Stage 5"
+}
