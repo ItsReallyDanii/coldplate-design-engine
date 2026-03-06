@@ -187,7 +187,7 @@ planning, or future-stage actions.
 
 | OI | Description | Status | Blocking? |
 |----|-------------|--------|-----------|
-| OI-04 | Thread form / fitting type for port bosses | Open — test-team decision | No |
+| OI-04 §d | Thread form / fitting type for port bosses (sub-item of OI-04; AM Build Spec document itself is CLOSED) | Open — test-team decision | No |
 | OI-05 | Issue RFQ to AM vendors; place fabrication order | **Now unblocked** | No (action item) |
 | OI-07 | CT scan verification of as-built specimen | Post-fabrication | No |
 | OI-09 | CT-based flow rate estimate | Post-fabrication | No |
@@ -226,7 +226,7 @@ planning, or future-stage actions.
 - No physical specimens exist.
 - Wave 1 procurement items (OI-11 through OI-20) are pending.
 - CT scan verification (OI-07) is post-fabrication.
-- Thread/fitting type (OI-04) is undefined.
+- Thread/fitting type (OI-04 §d sub-item) is undefined.
 - Stage 8 (benchtop testing) has not begun.
 - AM_BUILD_SPECIFICATION.md §d port text not updated to reflect completed
   port addition (non-blocking).
