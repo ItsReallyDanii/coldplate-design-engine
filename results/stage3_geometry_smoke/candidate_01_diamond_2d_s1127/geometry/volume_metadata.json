@@ -1,0 +1,21 @@
+{
+  "type": "3d_diamond_tpms",
+  "threshold": -0.1371316497312011,
+  "wavelength_px": 15.513267309547823,
+  "porosity": 0.555192,
+  "height_mm": 2.0,
+  "resolution": 50,
+  "dimensions": {
+    "nx": 50,
+    "ny": 50,
+    "nz": 50
+  },
+  "candidate_rank": 1,
+  "candidate_seed": 1127,
+  "candidate_family": "diamond_2d",
+  "candidate_score": 2049.6435058967345,
+  "stage2_params": {
+    "threshold": -0.1371316497312011,
+    "wavelength_px": 15.513267309547823
+  }
+}

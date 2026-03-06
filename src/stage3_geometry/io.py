@@ -6,9 +6,22 @@ Handles loading Stage 2 candidates and saving Stage 3 outputs.
 import csv
 import json
 import os
+import numpy as np
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 from datetime import datetime, timezone
+
+
+class NumpyEncoder(json.JSONEncoder):
+    """JSON encoder that handles numpy types."""
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
 
 
 def load_stage2_candidates(filepath: str) -> List[Dict[str, Any]]:
@@ -104,7 +117,7 @@ def save_json(data: Dict[str, Any], filepath: str):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     
     with open(filepath, 'w') as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f, indent=2, cls=NumpyEncoder)
     
     print(f"Saved JSON to {filepath}")
 

@@ -5,8 +5,21 @@ Records full traceability from Stage 2 candidates through 3D geometry.
 
 import json
 import os
+import numpy as np
 from typing import Dict, Any, List
 from datetime import datetime, timezone
+
+
+class NumpyEncoder(json.JSONEncoder):
+    """JSON encoder that handles numpy types."""
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
 
 
 def create_promotion_manifest(
@@ -101,7 +114,7 @@ def save_provenance(provenance: Dict[str, Any], filepath: str):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     
     with open(filepath, 'w') as f:
-        json.dump(provenance, f, indent=2)
+        json.dump(provenance, f, indent=2, cls=NumpyEncoder)
     
     print(f"Saved provenance to {filepath}")
 

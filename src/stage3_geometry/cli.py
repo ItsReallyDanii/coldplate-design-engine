@@ -1,12 +1,18 @@
 """Command-line interface for Stage 3 geometry promotion."""
 
 import sys
+import os
 import argparse
 import yaml
 import subprocess
 from pathlib import Path
 
-from . import io, promote, export, validate, provenance
+# Handle both direct execution and package import
+if __name__ == '__main__' and __package__ is None:
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    from stage3_geometry import io, promote, export, validate, provenance
+else:
+    from . import io, promote, export, validate, provenance
 
 
 def get_git_sha():

@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-03-06T09:36:44.331281+00:00",
+  "stage": "stage3_geometry",
+  "schema_version": "1.0",
+  "stage2_source": {
+    "rank": 1,
+    "family": "diamond_2d",
+    "seed": 1127,
+    "mask_id": "diamond_2d_s1127_eval85_gen5",
+    "total_score": 2049.6435058967345,
+    "is_valid": true,
+    "params": {
+      "threshold": -0.1371316497312011,
+      "wavelength_px": 15.513267309547823
+    },
+    "metrics": {
+      "porosity": 0.628,
+      "heat_exchange_area_proxy": 2049.9033926305146,
+      "hydraulic_resistance_proxy": 0.5197734675605746,
+      "flow_connectivity_score": 1.0,
+      "dead_zone_fraction": 0.0
+    }
+  },
+  "promotion": {
+    "volume_metadata": {
+      "type": "3d_diamond_tpms",
+      "threshold": -0.1371316497312011,
+      "wavelength_px": 15.513267309547823,
+      "porosity": 0.555192,
+      "height_mm": 2.0,
+      "resolution": 50,
+      "dimensions": {
+        "nx": 50,
+        "ny": 50,
+        "nz": 50
+      },
+      "candidate_rank": 1,
+      "candidate_seed": 1127,
+      "candidate_family": "diamond_2d",
+      "candidate_score": 2049.6435058967345,
+      "stage2_params": {
+        "threshold": -0.1371316497312011,
+        "wavelength_px": 15.513267309547823
+      }
+    },
+    "success": true,
+    "errors": []
+  },
+  "validation": {
+    "porosity": 0.555192,
+    "connectivity": {
+      "num_fluid_components": 1,
+      "largest_component_size": 69399,
+      "largest_component_fraction": 1.0,
+      "is_connected": true
+    },
+    "solid_connectivity": {
+      "num_solid_components": 1,
+      "largest_solid_component_size": 55601,
+      "largest_solid_component_fraction": 1.0,
+      "solid_is_connected": true
+    },
+    "feature_sizes": {
+      "min_channel_diameter_mm": 0.2,
+      "min_wall_thickness_mm": 0.2,
+      "min_channel_diameter_voxels": 2.0,
+      "min_wall_thickness_voxels": 2.0
+    },
+    "bounding_box": {
+      "dimensions_voxels": {
+        "nx": 50,
+        "ny": 50,
+        "nz": 50
+      },
+      "dimensions_mm": {
+        "x": 5.0,
+        "y": 5.0,
+        "z": 5.0
+      },
+      "total_volume_mm3": 125.00000000000003
+    }
+  },
+  "exports": {
+    "stl": "results/stage3_geometry_smoke/candidate_01_diamond_2d_s1127/geometry/geometry.stl",
+    "raw": "results/stage3_geometry_smoke/candidate_01_diamond_2d_s1127/geometry/volume.npy"
+  }
+}
