@@ -20,7 +20,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | Stage | Focus | Status |
 |-------|-------|--------|
 | 0 | Scaffold, target, and baseline documentation | Complete |
-| 0.5 | Literature review and constraint locking | In progress |
+| 0.5 | Literature review and constraint locking | Complete |
 | 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
 | 2 | Inverse-design formulation | Pending |
 | 3 | 3-D geometry generation and meshing | Pending |
