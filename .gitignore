@@ -34,3 +34,7 @@ htmlcov/
 
 # Stage 1 outputs
 results/stage1_2d*/
+
+# Stage 3 outputs (large STL files)
+results/stage3_geometry*/
+*.stl

@@ -1,6 +1,6 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS.** Literature population in progress (does not block execution).
+**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS.** Literature population in progress (does not block execution).
 
 Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
 
@@ -23,7 +23,7 @@ Inverse design of internal porous and channel architectures for direct-to-chip l
 | 0.5 | Literature review and constraint locking | Complete |
 | 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
 | 2 | Inverse-design formulation | **Complete (PASS)** |
-| 3 | 3-D geometry generation and meshing | Pending |
+| 3 | 3-D geometry generation and meshing | **Complete (PASS)** |
 | 3.5 | Physical-model corrections and validation | Pending |
 | 4 | CFD simulation under matched constraints | Pending |
 | 5 | FEA structural validation | Pending |
@@ -96,6 +96,39 @@ pytest tests/test_stage2_*.py -v
 - **Stage 2 gate: PASS**
 
 **IMPORTANT:** Stage 2 operates on Stage 1 proxy metrics only. Results do NOT establish real thermal or hydraulic superiority. CFD validation (Stages 3-4) is required for physical claims.
+
+## Stage 3: Quick Start
+
+Stage 3 promotes top Stage 2 candidates to 3D parametric geometry with mesh-ready exports.
+
+**Run smoke test:**
+```bash
+python src/stage3_geometry/cli.py smoke
+```
+
+**Run full promotion:**
+```bash
+python src/stage3_geometry/cli.py promote configs/stage3_default.yaml
+```
+
+**Run tests:**
+```bash
+pytest tests/test_stage3_*.py -v
+```
+
+**See full documentation:**
+- `docs/stage3_geometry.md` - Stage 3 specification and family mappings
+- `docs/stage3_execution.md` - Execution guide and commands
+
+**Stage 3 Results:**
+- **All 6 baseline families** promote to true 3D geometry
+- TPMS families (gyroid, diamond, primitive) use true 3D implicit surface equations
+- Channel families (straight, serpentine, pin-fin) use 3D extrusion/array generation
+- Geometry exported as STL (mesh-ready) and raw volumes
+- Validation checks confirm connectivity and feature sizes
+- **Stage 3 gate: PASS**
+
+**IMPORTANT:** Stage 3 generates 3D geometry only. Results do NOT establish thermal-hydraulic performance. CFD simulation (Stage 4) is required for flow and thermal claims.
 
 ## Contributing
 
