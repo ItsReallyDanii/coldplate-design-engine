@@ -3,7 +3,7 @@
 ## Source ID
 - Identifier such as `LIT-001`, `LIT-002`, or `LIT-003`.
 
-## Potential claim-audit linkage (optional, later)
+## Claim-audit linkage (optional)
 - Note any claim-audit entry that this source might support once formalized.
 
 ## Citation
