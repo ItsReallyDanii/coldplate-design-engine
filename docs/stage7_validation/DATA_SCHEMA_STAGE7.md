@@ -39,10 +39,16 @@ Define the data formats, field names, and provenance metadata for all Stage 7 be
 | `T_out_C` | float | °C | Outlet coolant temperature |
 | `T_heater_C` | float | °C | Heater surface temperature |
 | `T_top_C` | float | °C | Cold plate top surface temperature |
+| `T_amb_C` | float | °C | Room ambient temperature (free-air sensor, not in flow path) |
 | `P_in_Pa` | float | Pa | Inlet static pressure |
 | `P_out_Pa` | float | Pa | Outlet static pressure |
 | `Q_LPM` | float | LPM | Volumetric flow rate |
 | `P_elec_W` | float | W | Electrical power to heater |
+
+> **Note on `T_amb_C`:** Added in schema v1.1.0.  Parasitic fixture losses scale with
+> (T_heater − T_amb); continuous logging is required to flag runs with > 3 °C ambient
+> drift (see PREFLIGHT_VERIFICATION.md Section 3 and INSTRUMENTATION_AND_SENSORS.md
+> Section 5).  This column must appear in every timeseries CSV.
 
 ### 2.3 Example
 
@@ -52,10 +58,10 @@ Define the data formats, field names, and provenance metadata for all Stage 7 be
 > to Stage 4 output.
 
 ```csv
-timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
-0.000,25.01,25.02,25.05,25.03,101825.3,101325.0,MEASURED,0.00
-1.000,25.01,25.03,28.44,25.10,101830.1,101325.2,MEASURED,25.02
-2.000,25.02,25.05,31.22,25.18,101828.7,101324.8,MEASURED,25.01
+timestamp_s,T_in_C,T_out_C,T_heater_C,T_top_C,T_amb_C,P_in_Pa,P_out_Pa,Q_LPM,P_elec_W
+0.000,25.01,25.02,25.05,25.03,22.10,101825.3,101325.0,MEASURED,0.00
+1.000,25.01,25.03,28.44,25.10,22.11,101830.1,101325.2,MEASURED,25.02
+2.000,25.02,25.05,31.22,25.18,22.12,101828.7,101324.8,MEASURED,25.01
 ```
 
 ---
@@ -387,7 +393,7 @@ Examples:
 ## 9. Versioning
 
 - Schema version follows semver (`major.minor.patch`).
-- Current version: `1.1.0` (reconciliation update: added `heat_flux_w_m2`, `total_power_w`, `simulation_domain_mm`, `caveat` fields to simulation reference; added `steady_state_channel` to quality block; added `T_amb_C` to measured_means).
+- Current version: `1.1.0` (reconciliation update: added `heat_flux_w_m2`, `total_power_w`, `simulation_domain_mm`, `caveat` fields to simulation reference; added `steady_state_channel` to quality block; added `T_amb_C` to measured_means and to timeseries CSV schema — required for ambient-logging consistency with PREFLIGHT_VERIFICATION.md Section 3).
 - Breaking changes (column removal, type change) increment major version.
 - Additive changes (new optional columns) increment minor version.
 - All files include `schema_version` field for forward compatibility.
