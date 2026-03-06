@@ -4,7 +4,7 @@ Generates baseline geometries across parameter ranges and evaluates them.
 """
 
 import itertools
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Dict, Any
 from .schemas import (
@@ -162,7 +162,7 @@ def run_sweep(config: SweepConfig, verbose: bool = True) -> List[EvaluationResul
     
     # Create and save manifest
     manifest = SweepManifest(
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(timezone.utc).isoformat(),
         git_sha=get_git_sha(),
         config=config,
         num_evaluations=eval_count,

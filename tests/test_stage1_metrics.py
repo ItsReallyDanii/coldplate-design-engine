@@ -117,7 +117,7 @@ class TestMetricComputation:
         assert connectivity < 1.0, "Disconnected mask should have score < 1.0"
     
     def test_dead_zone_fraction(self, simple_channel_mask):
-        """Test dead zone fraction for simple channel."""
+        """Test dead zone fraction for simple horizontal channel."""
         metrics = compute_all_metrics(simple_channel_mask, "left", "right")
         
         dead_zone = metrics["dead_zone_fraction"].value

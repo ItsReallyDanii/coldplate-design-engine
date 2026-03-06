@@ -396,7 +396,8 @@ def _compute_tortuosity_proxy(mask: np.ndarray, inlet_side: str, outlet_side: st
     
     # Very crude path length proxy: use number of fluid pixels along expected direction
     # This is a heuristic; real tortuosity needs streamline tracing
-    if porosity := mask.mean():
+    porosity = mask.mean()
+    if porosity > 0:
         # Lower porosity suggests more tortuous path
         tortuosity_proxy = 1.0 / (porosity + 0.1)
     else:

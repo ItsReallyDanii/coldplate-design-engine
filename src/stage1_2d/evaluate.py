@@ -1,7 +1,7 @@
 """Single-mask evaluation module."""
 
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional, List
 from .schemas import BaselineParams, EvaluationResult
 from .masks import load_and_validate_mask
@@ -53,7 +53,7 @@ def evaluate_mask(
         mask_id=mask_id,
         baseline_params=baseline_params,
         metrics=metrics,
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(timezone.utc).isoformat(),
         warnings=warnings
     )
     
