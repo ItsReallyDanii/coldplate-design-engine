@@ -10,9 +10,9 @@ from pathlib import Path
 # Handle both direct execution and package import
 if __name__ == '__main__' and __package__ is None:
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-    from stage3_geometry import io, promote, export, validate, provenance
+    from stage3_geometry import io, promote, export, validate, provenance, config as geom_config
 else:
-    from . import io, promote, export, validate, provenance
+    from . import io, promote, export, validate, provenance, config as geom_config
 
 
 def get_git_sha():
@@ -58,11 +58,16 @@ def run_smoke(args):
     output_dir = "results/stage3_geometry_smoke"
     io.ensure_output_dir(output_dir)
     
+    # Get remediation configuration (v1: 0.25mm voxels, resolution=20)
+    smoke_cfg = geom_config.get_smoke_config()
+    
     config = {
-        'resolution': 50,  # Low res for smoke test
-        'height_mm': 2.0,
+        'resolution': smoke_cfg['resolution'],  # Remediation: 20 (was 50)
+        'height_mm': smoke_cfg['height_mm'],
+        'voxel_size_mm': smoke_cfg['voxel_size_mm'],  # Remediation: 0.25mm (was 0.1mm)
         'top_k': 2,
         'source_file': stage2_results,
+        'remediation': geom_config.get_remediation_info(),  # Provenance tracking
     }
     
     git_sha = get_git_sha()
@@ -97,9 +102,10 @@ def run_smoke(args):
             output_dir, candidate['rank'], candidate['family'], candidate['seed']
         )
         
-        # Validate
+        # Validate (use config voxel size)
+        voxel_size = config['voxel_size_mm']
         is_valid, val_results, errors = validate.validate_geometry(
-            volume, voxel_size=0.1, require_connected=False
+            volume, voxel_size=voxel_size, require_connected=False
         )
         
         print(f"Validation: {'PASS' if is_valid else 'FAIL'}")
@@ -111,7 +117,7 @@ def run_smoke(args):
         export_paths = {}
         
         stl_path = f"{cand_dir}/geometry/geometry.stl"
-        if export.export_stl_from_volume(volume, stl_path, voxel_size=0.1):
+        if export.export_stl_from_volume(volume, stl_path, voxel_size=voxel_size):
             export_paths['stl'] = stl_path
         
         raw_path = f"{cand_dir}/geometry/volume.npy"
@@ -165,8 +171,16 @@ def run_promote(args):
     output_dir = config.get('output_dir', 'results/stage3_geometry')
     io.ensure_output_dir(output_dir)
     
-    resolution = config.get('resolution', 100)
-    height_mm = config.get('height_mm', 2.0)
+    # Use remediation config defaults if not specified in config file
+    full_cfg = geom_config.get_full_config()
+    resolution = config.get('resolution', full_cfg['resolution'])
+    height_mm = config.get('height_mm', full_cfg['height_mm'])
+    voxel_size_mm = config.get('voxel_size_mm', full_cfg['voxel_size_mm'])
+    
+    # Add remediation info to config for provenance
+    if 'remediation' not in config:
+        config['remediation'] = geom_config.get_remediation_info()
+        config['voxel_size_mm'] = voxel_size_mm
     
     git_sha = get_git_sha()
     manifest = provenance.create_promotion_manifest(selected, config, git_sha)
@@ -199,9 +213,9 @@ def run_promote(args):
             output_dir, candidate['rank'], candidate['family'], candidate['seed']
         )
         
-        # Validate
+        # Validate (use config voxel size)
         is_valid, val_results, errors = validate.validate_geometry(
-            volume, voxel_size=0.1, require_connected=False
+            volume, voxel_size=voxel_size_mm, require_connected=False
         )
         
         print(f"Validation: {'PASS' if is_valid else 'FAIL'}")
@@ -210,7 +224,7 @@ def run_promote(args):
         export_paths = {}
         
         stl_path = f"{cand_dir}/geometry/geometry.stl"
-        if export.export_stl_from_volume(volume, stl_path, voxel_size=0.1):
+        if export.export_stl_from_volume(volume, stl_path, voxel_size=voxel_size_mm):
             export_paths['stl'] = stl_path
         
         raw_path = f"{cand_dir}/geometry/volume.npy"
