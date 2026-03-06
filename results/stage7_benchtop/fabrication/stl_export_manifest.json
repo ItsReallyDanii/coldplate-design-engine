@@ -34,5 +34,37 @@
     "fluid_channel_stl": "results/stage3_geometry_smoke/candidate_02_diamond_2d_s1045/geometry/geometry.stl",
     "fluid_channel_stl_note": "Fluid-domain surface STL from Stage 3 export; 573 open boundary edges at channel exit faces (expected for open coolant-channel geometry). Not watertight; DO NOT transmit to AM vendor without mesh capping."
   },
-  "note_for_vendor": "This STL represents the solid Al metal body (TPMS walls + surrounding material). Internal channels are enclosed voids. Before slicing: (1) add inlet/outlet ports per build specification OI-04; (2) confirm powder evacuation access per OI-04 \u00a7d; (3) verify minimum feature size \u2264 0.5 mm per OI-04 \u00a7b."
+  "note_for_vendor": "This STL represents the solid Al metal body (TPMS walls + surrounding material). Internal channels are enclosed voids. Before slicing: (1) add inlet/outlet ports per build specification OI-04; (2) confirm powder evacuation access per OI-04 \u00a7d; (3) verify minimum feature size \u2264 0.5 mm per OI-04 \u00a7b.",
+  "port_addition": {
+    "date": "2026-03-06",
+    "operator": "automated-port-edit-script (coldplate-design-engine copilot agent)",
+    "tool": "Python 3 / numpy 2.4.2 / scikit-image 0.26.0 marching_cubes / struct binary-STL",
+    "inlet_face": "-Z",
+    "outlet_face": "+Z",
+    "port_bore_diameter_mm": 3.0,
+    "boss_outer_diameter_mm": 4.0,
+    "boss_height_mm": 2.0,
+    "boss_center_face_coords_original_vox": [
+      10,
+      10
+    ],
+    "transition_boss": true,
+    "geometry_decisions_source": "Resolved from volumetric analysis of volume.npy. All 6 TPMS faces have ~56% fluid voxels. Center voxel (10,10) on both -Z (z=0) and +Z (z=19) faces confirmed fluid (channel void) by np assertion. Face pair -Z/+Z selected for axial through-flow. No CAD visual inspection required; geometry fully resolved from repo data.",
+    "post_edit_sha256": "89c4e69f8a2544e45b3e1c3c4f34fb9152cd2845fd8620ca0605a0d036e9e259",
+    "post_edit_file_size_bytes": 624484,
+    "post_edit_triangle_count": 12488,
+    "post_edit_watertight_check": {
+      "tool": "trimesh 4.11.3 (process=True) + edge-manifold analysis (numpy 2.4.2)",
+      "open_edges": 0,
+      "non_manifold_edges": 0,
+      "enclosed_volume_mm3": 72.5599,
+      "bounding_box_extents_mm": [
+        9.5,
+        5.0,
+        5.0
+      ],
+      "watertight": true,
+      "result": "PASS"
+    }
+  }
 }
