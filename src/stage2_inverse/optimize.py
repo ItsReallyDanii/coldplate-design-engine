@@ -98,6 +98,8 @@ class GeneticOptimizer:
         family = individual["family"]
         params = individual["params"]
         sample_seed = self.seed + self.evaluation_count
+        evaluation_num = self.evaluation_count
+        self.evaluation_count += 1
         
         # Create BaselineParams
         baseline_params = BaselineParams(
@@ -109,8 +111,10 @@ class GeneticOptimizer:
         
         # Generate and evaluate
         try:
-            mask = generate_baseline_mask(baseline_params)
-            mask_id = f"{family.value}_s{sample_seed}_eval{self.evaluation_count}_gen{self.generation}"
+            mask, metadata = generate_baseline_mask(
+                family, self.search_space.grid, params, sample_seed
+            )
+            mask_id = f"{family.value}_s{sample_seed}_eval{evaluation_num}_gen{self.generation}"
             eval_result = evaluate_mask(mask, mask_id, baseline_params)
             obj_result = self.objective_func.evaluate(eval_result.metrics)
             
@@ -122,7 +126,7 @@ class GeneticOptimizer:
                 "family": family.value,
                 "params": params,
                 "seed": sample_seed,
-                "evaluation_num": self.evaluation_count,
+                "evaluation_num": evaluation_num,
                 "generation": self.generation,
                 "mask_id": mask_id,
                 "total_score": obj_result["total_score"],
@@ -145,14 +149,13 @@ class GeneticOptimizer:
                 "family": family.value,
                 "params": params,
                 "seed": sample_seed,
-                "evaluation_num": self.evaluation_count,
+                "evaluation_num": evaluation_num,
                 "generation": self.generation,
                 "is_valid": False,
                 "error": str(e),
                 "timestamp": datetime.now(timezone.utc).isoformat(),
             }
         
-        self.evaluation_count += 1
         self.history.append(result)
         
         return result

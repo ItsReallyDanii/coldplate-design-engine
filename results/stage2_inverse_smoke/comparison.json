@@ -1,0 +1,49 @@
+{
+  "method_names": [
+    "random_search",
+    "genetic_algorithm"
+  ],
+  "budgets": [
+    10,
+    10
+  ],
+  "best_scores": [
+    309.34273059848596,
+    96.76775810391804
+  ],
+  "top_k_scores": [
+    [
+      309.34273059848596
+    ],
+    [
+      96.76775810391804,
+      96.76775810391804,
+      96.76775810391804,
+      95.60509155647205,
+      95.60509155647205
+    ]
+  ],
+  "valid_counts": [
+    1,
+    5
+  ],
+  "invalid_counts": [
+    9,
+    5
+  ],
+  "family_distributions": [
+    {
+      "straight_channel": 1,
+      "pin_fin": 3,
+      "gyroid_2d": 2,
+      "primitive_2d": 1,
+      "serpentine_channel": 1,
+      "diamond_2d": 2
+    },
+    {
+      "gyroid_2d": 3,
+      "primitive_2d": 6,
+      "serpentine_channel": 1
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+rank,method,family,total_score,total_objective,total_penalty,is_valid,evaluation_num,seed,mask_id,param_threshold,param_wavelength_px,porosity,heat_exchange_area_proxy,hydraulic_resistance_proxy,flow_connectivity_score,dead_zone_fraction
+1,genetic_algorithm,primitive_2d,96.76775810391804,96.76775810391804,0.0,True,2,45,primitive_2d_s45_eval2_gen0,-0.14178468151297519,41.31272951365155,0.7996,96.7980377628041,0.060559317772129126,1.0,0.0
+2,genetic_algorithm,primitive_2d,96.76775810391804,96.76775810391804,0.0,True,7,50,primitive_2d_s50_eval7_gen1,-0.14178468151297519,41.31272951365155,0.7996,96.7980377628041,0.060559317772129126,1.0,0.0
+3,genetic_algorithm,primitive_2d,96.76775810391804,96.76775810391804,0.0,True,9,52,primitive_2d_s52_eval9_gen2,-0.14178468151297519,41.31272951365155,0.7996,96.7980377628041,0.060559317772129126,1.0,0.0

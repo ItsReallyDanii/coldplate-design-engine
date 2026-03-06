@@ -89,21 +89,28 @@ class RandomSearchSampler:
         )
         
         # Generate mask
+        evaluation_num = self.evaluation_count
+        self.evaluation_count += 1
+        
         try:
-            mask = generate_baseline_mask(baseline_params)
+            mask, metadata = generate_baseline_mask(
+                family, self.search_space.grid, params, sample_seed
+            )
         except Exception as e:
-            return {
+            result = {
                 "family": family.value,
                 "params": params,
                 "seed": sample_seed,
-                "evaluation_num": self.evaluation_count,
+                "evaluation_num": evaluation_num,
                 "is_valid": False,
                 "error": str(e),
                 "timestamp": datetime.now(timezone.utc).isoformat(),
             }
+            self.history.append(result)
+            return result
         
         # Evaluate mask
-        mask_id = f"{family.value}_s{sample_seed}_eval{self.evaluation_count}"
+        mask_id = f"{family.value}_s{sample_seed}_eval{evaluation_num}"
         eval_result = evaluate_mask(mask, mask_id, baseline_params)
         
         # Score with objective function
@@ -114,7 +121,7 @@ class RandomSearchSampler:
             "family": family.value,
             "params": params,
             "seed": sample_seed,
-            "evaluation_num": self.evaluation_count,
+            "evaluation_num": evaluation_num,
             "mask_id": mask_id,
             "total_score": obj_result["total_score"],
             "total_objective": obj_result["total_objective"],
@@ -127,7 +134,6 @@ class RandomSearchSampler:
             "timestamp": eval_result.timestamp,
         }
         
-        self.evaluation_count += 1
         self.history.append(result)
         
         return result

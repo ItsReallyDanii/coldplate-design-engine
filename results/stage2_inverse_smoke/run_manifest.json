@@ -1,0 +1,205 @@
+{
+  "timestamp": "2026-03-06T09:21:06.857499+00:00",
+  "git_sha": "154a93045550a1a55486fb5179a4458cd37589fe",
+  "stage": "stage2_inverse",
+  "method": "smoke_test",
+  "budget": 10,
+  "seed": 42,
+  "num_evaluations": 20,
+  "search_space": {
+    "grid": {
+      "nx": 50,
+      "ny": 50,
+      "dx": 0.0001,
+      "dy": 0.0001
+    },
+    "family_spaces": [
+      {
+        "family": "straight_channel",
+        "parameter_bounds": [
+          {
+            "name": "num_channels",
+            "min_val": 2,
+            "max_val": 10,
+            "param_type": "integer"
+          },
+          {
+            "name": "channel_width_fraction",
+            "min_val": 0.2,
+            "max_val": 0.8,
+            "param_type": "continuous"
+          }
+        ]
+      },
+      {
+        "family": "serpentine_channel",
+        "parameter_bounds": [
+          {
+            "name": "channel_width_px",
+            "min_val": 5,
+            "max_val": 20,
+            "param_type": "continuous"
+          },
+          {
+            "name": "turn_radius_px",
+            "min_val": 10,
+            "max_val": 30,
+            "param_type": "continuous"
+          },
+          {
+            "name": "num_passes",
+            "min_val": 2,
+            "max_val": 6,
+            "param_type": "integer"
+          }
+        ]
+      },
+      {
+        "family": "pin_fin",
+        "parameter_bounds": [
+          {
+            "name": "pin_diameter_px",
+            "min_val": 4,
+            "max_val": 15,
+            "param_type": "continuous"
+          },
+          {
+            "name": "pin_spacing_px",
+            "min_val": 15,
+            "max_val": 40,
+            "param_type": "continuous"
+          },
+          {
+            "name": "offset_rows",
+            "min_val": 0,
+            "max_val": 1,
+            "param_type": "discrete"
+          }
+        ]
+      },
+      {
+        "family": "gyroid_2d",
+        "parameter_bounds": [
+          {
+            "name": "wavelength_px",
+            "min_val": 15,
+            "max_val": 50,
+            "param_type": "continuous"
+          },
+          {
+            "name": "threshold",
+            "min_val": -0.3,
+            "max_val": 0.3,
+            "param_type": "continuous"
+          }
+        ]
+      },
+      {
+        "family": "diamond_2d",
+        "parameter_bounds": [
+          {
+            "name": "wavelength_px",
+            "min_val": 15,
+            "max_val": 50,
+            "param_type": "continuous"
+          },
+          {
+            "name": "threshold",
+            "min_val": -0.3,
+            "max_val": 0.3,
+            "param_type": "continuous"
+          }
+        ]
+      },
+      {
+        "family": "primitive_2d",
+        "parameter_bounds": [
+          {
+            "name": "wavelength_px",
+            "min_val": 15,
+            "max_val": 50,
+            "param_type": "continuous"
+          },
+          {
+            "name": "threshold",
+            "min_val": -0.3,
+            "max_val": 0.3,
+            "param_type": "continuous"
+          }
+        ]
+      }
+    ],
+    "allowed_families": [
+      "straight_channel",
+      "serpentine_channel",
+      "pin_fin",
+      "gyroid_2d",
+      "diamond_2d",
+      "primitive_2d"
+    ]
+  },
+  "objective": {
+    "name": "default_stage2_objective",
+    "description": "Default Stage 2 objective: maximize heat_exchange_area_proxy, minimize hydraulic_resistance_proxy, enforce basic constraints",
+    "objective_terms": [
+      {
+        "name": "heat_transfer",
+        "metric_name": "heat_exchange_area_proxy",
+        "weight": 1.0,
+        "goal": "maximize",
+        "is_proxy": true,
+        "description": "Maximize heat exchange area proxy (NOT real heat transfer)"
+      },
+      {
+        "name": "hydraulic_performance",
+        "metric_name": "hydraulic_resistance_proxy",
+        "weight": 0.5,
+        "goal": "minimize",
+        "is_proxy": true,
+        "description": "Minimize hydraulic resistance proxy (NOT real pressure drop)"
+      }
+    ],
+    "constraints": [
+      {
+        "name": "flow_connected",
+        "metric_name": "flow_connectivity_score",
+        "constraint_type": "min",
+        "threshold_min": 0.5,
+        "threshold_max": null,
+        "hard": true,
+        "penalty_weight": 1000.0,
+        "description": "Flow must be reasonably connected from inlet to outlet"
+      },
+      {
+        "name": "porosity_range",
+        "metric_name": "porosity",
+        "constraint_type": "range",
+        "threshold_min": 0.3,
+        "threshold_max": 0.8,
+        "hard": true,
+        "penalty_weight": 1000.0,
+        "description": "Porosity must be in reasonable range for cold plate"
+      },
+      {
+        "name": "dead_zone_limit",
+        "metric_name": "dead_zone_fraction",
+        "constraint_type": "max",
+        "threshold_min": null,
+        "threshold_max": 0.3,
+        "hard": false,
+        "penalty_weight": 500.0,
+        "description": "Penalize excessive dead zones (soft constraint)"
+      },
+      {
+        "name": "min_fluid_feature",
+        "metric_name": "min_fluid_feature_px",
+        "constraint_type": "min",
+        "threshold_min": 2.0,
+        "threshold_max": null,
+        "hard": false,
+        "penalty_weight": 200.0,
+        "description": "Penalize features below manufacturing threshold (soft)"
+      }
+    ]
+  }
+}
