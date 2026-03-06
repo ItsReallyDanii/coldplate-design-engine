@@ -199,11 +199,14 @@ Both candidates pass manufacturability at the exact threshold (0.5 mm measured =
 
 | Source | Estimated uncertainty | Propagated to R_th | Propagated to ΔP |
 |--------|----------------------|--------------------|--------------------|
-| Thermocouple (T) | ±0.5 °C | ±0.04 K/W (~0.4%) | — |
-| Pressure transducer | ±0.5% FS (±25 Pa at 5 kPa range) | — | ±50 Pa (~5%) |
+| Thermocouple (T) | ±0.5 °C | ±0.028 K/W (~0.25%)¹ | — |
+| Pressure transducer | ±0.5% FS (±25 Pa at 5 kPa range) | — | ±50 Pa (~5% of 1000 Pa) |
 | Flow meter | ±2% reading | — | — |
-| Power meter | ±1% reading | ±0.11 K/W (~1%) | — |
-| Combined (RSS) | — | ~±1.1% | ~±5.1% |
+| Power meter | ±1% reading | ±0.11 K/W (~1%)² | — |
+| Combined (RSS) | — | ~±1.0% | ~±5.1% |
+
+¹ R_th = (T_heater − T_in) / P_elec. Two TCs in numerator: δR_th = √(2) × 0.5 / P_elec. At P_elec = 25 W: δR_th = 0.028 K/W. As fraction of predicted R_th = 11.27 K/W: 0.25%.  
+² δR_th / R_th = δP_elec / P_elec = 1%.
 
 ### 8.2 Repeat Count
 
