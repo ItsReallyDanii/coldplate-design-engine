@@ -26,10 +26,7 @@ from stage6_structural import (
 
 def reconstruct_volume_from_stage3(stage3_metadata: Dict[str, Any]) -> np.ndarray:
     """
-    Reconstruct volume array from Stage 3 geometry metadata.
-    
-    This is a SIMPLIFIED reconstruction for screening purposes.
-    For real geometry, we would load the actual voxel data.
+    Load actual volume array from Stage 3 geometry.
     
     Args:
         stage3_metadata: Stage 3 geometry metadata
@@ -37,7 +34,21 @@ def reconstruct_volume_from_stage3(stage3_metadata: Dict[str, Any]) -> np.ndarra
     Returns:
         Volume array (True=fluid, False=solid)
     """
-    # Extract geometry info
+    # Try to load actual geometry from Stage 3 exports
+    provenance = stage3_metadata.get('provenance', {})
+    exports = provenance.get('exports', {})
+    raw_path = exports.get('raw', None)
+    
+    if raw_path and os.path.exists(raw_path):
+        # Load actual geometry
+        volume = np.load(raw_path)
+        # Convert to boolean (fluid=True, solid=False)
+        # Stage 3 exports use 1=fluid, 0=solid
+        volume = volume.astype(bool)
+        return volume
+    
+    # Fallback: if path not found, create synthetic volume
+    # This maintains backward compatibility for old results
     validation = stage3_metadata.get('validation', {})
     bbox = validation.get('bounding_box', {})
     dims_voxels = bbox.get('dimensions_voxels', {})
@@ -48,8 +59,7 @@ def reconstruct_volume_from_stage3(stage3_metadata: Dict[str, Any]) -> np.ndarra
     
     porosity = validation.get('porosity', 0.5)
     
-    # For screening, create synthetic volume with correct porosity
-    # In real implementation, would load actual geometry
+    print(f"  WARNING: Actual geometry not found at {raw_path}, using synthetic volume")
     volume = np.random.random((nx, ny, nz)) < porosity
     
     return volume
