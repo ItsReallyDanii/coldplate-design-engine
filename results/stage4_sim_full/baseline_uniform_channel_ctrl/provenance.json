@@ -1,0 +1,153 @@
+{
+  "timestamp": "2026-03-10T23:57:30.923362+00:00",
+  "stage": "stage4_sim",
+  "schema_version": "1.0",
+  "candidate_id": "baseline_uniform_channel_ctrl",
+  "git_sha": "8c5ead7cefd0a9a4035b161b5f690fe3c0ab8838",
+  "control_type": "uniform_channel",
+  "stage3_source": {
+    "provenance": {
+      "timestamp": "2026-03-10T23:57:30.923362+00:00",
+      "stage": "stage4_control_geometry",
+      "schema_version": "1.0",
+      "stage2_source": {
+        "rank": null,
+        "family": "uniform_channel",
+        "seed": null,
+        "mask_id": "baseline_uniform_channel_ctrl",
+        "total_score": null,
+        "is_valid": true,
+        "description": "All-fluid column. No obstructions. Primary axis=z. Expected: near-zero transverse velocity (vx,vy\u22480), uniform vz. Bridge expected behavior: theta_std \u2248 0 (G5 negative control).",
+        "params": {
+          "nx": 50,
+          "ny": 50,
+          "nz": 50,
+          "n_solid": 0,
+          "n_fluid": 125000,
+          "porosity": 1.0
+        }
+      },
+      "promotion": {
+        "volume_metadata": {
+          "type": "uniform_channel",
+          "porosity": 1.0,
+          "height_mm": 5.0,
+          "resolution": 50,
+          "dimensions": {
+            "nx": 50,
+            "ny": 50,
+            "nz": 50
+          },
+          "candidate_rank": null,
+          "candidate_seed": null,
+          "candidate_family": "uniform_channel"
+        },
+        "success": true,
+        "errors": []
+      },
+      "validation": {
+        "porosity": 1.0,
+        "connectivity": {
+          "num_fluid_components": 1,
+          "note": "control geometry \u2014 connectivity not validated"
+        }
+      }
+    },
+    "metadata": {
+      "candidate_id": "baseline_uniform_channel_ctrl",
+      "control": true,
+      "geometry_type": "uniform_channel",
+      "description": "All-fluid column. No obstructions. Primary axis=z. Expected: near-zero transverse velocity (vx,vy\u22480), uniform vz. Bridge expected behavior: theta_std \u2248 0 (G5 negative control)."
+    }
+  },
+  "simulation": {
+    "grid": {
+      "shape": [
+        50,
+        50,
+        50
+      ],
+      "voxel_size_mm": 0.1,
+      "domain_size_mm": [
+        5.0,
+        5.0,
+        5.0
+      ],
+      "porosity": 1.0
+    },
+    "boundary_conditions": {
+      "inlet_pressure_pa": 102325.0,
+      "outlet_pressure_pa": 101325.0,
+      "pressure_drop_pa": 1000.0,
+      "fluid_density_kg_m3": 1000.0,
+      "fluid_viscosity_pa_s": 0.001,
+      "flow_direction": "z",
+      "matched_conditions": true
+    },
+    "solver": {
+      "type": "pressure_poisson",
+      "method": "finite_difference",
+      "converged": true,
+      "iterations": 1,
+      "solve_time_s": 182.4390721321106,
+      "tolerance": 1e-06
+    },
+    "config": {
+      "mode": "control",
+      "geometry_type": "uniform_channel"
+    }
+  },
+  "metrics": {
+    "simulated_quantities": {
+      "pressure_drop": {
+        "pressure_drop_pa": 1000.0,
+        "inlet_pressure_pa": 102325.0,
+        "outlet_pressure_pa": 101325.0,
+        "label": "SIMULATED",
+        "method": "pressure_poisson_solver"
+      },
+      "flow_rate": {
+        "flow_rate_m3_s": 0.005102040816233498,
+        "flow_rate_lpm": 306.1224489740099,
+        "label": "SIMULATED",
+        "method": "velocity_integration"
+      },
+      "velocity_statistics": {
+        "v_mean_m_s": 204.08163265306175,
+        "v_max_m_s": 204.0816326670756,
+        "v_min_m_s": 204.08163264131872,
+        "v_std_m_s": 2.232001546364558e-09,
+        "vz_mean_m_s": 204.08163265306175,
+        "label": "SIMULATED",
+        "method": "velocity_field_statistics"
+      },
+      "flow_uniformity": {
+        "coefficient_of_variation": 1.0936807577186306e-11,
+        "maldistribution_factor": 1.000000000068668,
+        "label": "SIMULATED",
+        "method": "velocity_distribution_analysis"
+      },
+      "hydraulic_resistance": {
+        "hydraulic_resistance_pa_s_m3": 196000.00000357395,
+        "label": "SIMULATED",
+        "method": "resistance_from_dp_and_q"
+      }
+    },
+    "geometric_quantities": {
+      "porosity": 1.0,
+      "domain_volume_mm3": 125.0,
+      "fluid_volume_mm3": 125.0,
+      "label": "GEOMETRIC",
+      "method": "geometry_analysis"
+    },
+    "proxy_quantities": {
+      "note": "Thermal simulation not yet implemented in Stage 4",
+      "label": "NOT_COMPUTED"
+    },
+    "solver_info": {
+      "converged": true,
+      "iterations": 1,
+      "solve_time_s": 182.4390721321106
+    }
+  }
+}
