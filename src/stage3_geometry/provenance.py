@@ -172,7 +172,7 @@ def create_summary_report(
         rank = prov['stage2_source']['rank']
         family = prov['stage2_source']['family']
         seed = prov['stage2_source']['seed']
-        status = "✓" if prov['promotion']['success'] else "✗"
+        status = "PASS" if prov['promotion']['success'] else "FAIL"
         
         if 'validation' in prov and 'porosity' in prov['validation']:
             porosity = f"{prov['validation']['porosity']:.3f}"

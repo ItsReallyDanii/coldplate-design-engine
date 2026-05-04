@@ -142,7 +142,7 @@ if __name__ == '__main__':
         print(f"  {msg}")
     
     if is_valid:
-        print("\n✓ Configuration valid")
+        print("\n[OK] Configuration valid")
     else:
-        print("\n✗ Configuration has warnings")
+        print("\n[WARN] Configuration has warnings")
         exit(1)

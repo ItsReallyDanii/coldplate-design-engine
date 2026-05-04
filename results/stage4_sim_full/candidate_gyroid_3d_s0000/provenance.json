@@ -1,0 +1,168 @@
+{
+  "timestamp": "2026-03-11T06:07:40.975623+00:00",
+  "stage": "stage4_sim",
+  "schema_version": "1.0",
+  "candidate_id": "candidate_gyroid_3d_s0000",
+  "git_sha": "658854528e2ebdd0606442a2976d20ea1fe7f7c9",
+  "stage3_source": {
+    "provenance": {
+      "timestamp": "2026-03-11T06:07:40.975623+00:00",
+      "stage": "stage3_geometry",
+      "schema_version": "1.0",
+      "stage2_source": {
+        "rank": null,
+        "family": "gyroid_2d",
+        "seed": 0,
+        "mask_id": "candidate_gyroid_3d_s0000",
+        "total_score": null,
+        "is_valid": true,
+        "params": {
+          "threshold": -0.24,
+          "wavelength_px": 15.513267309547823
+        }
+      },
+      "promotion": {
+        "volume_metadata": {
+          "type": "3d_gyroid_tpms",
+          "threshold": -0.24,
+          "wavelength_px": 15.513267309547823,
+          "porosity": 0.579544,
+          "height_mm": 5.0,
+          "resolution": 50,
+          "dimensions": {
+            "nx": 50,
+            "ny": 50,
+            "nz": 50
+          },
+          "candidate_rank": null,
+          "candidate_seed": 0,
+          "candidate_family": "gyroid_2d"
+        },
+        "success": true,
+        "errors": []
+      },
+      "validation": {
+        "porosity": 0.579544,
+        "connectivity": {
+          "note": "not validated for this pilot artifact"
+        }
+      }
+    },
+    "metadata": {
+      "type": "3d_gyroid_tpms",
+      "threshold": -0.24,
+      "wavelength_px": 15.513267309547823,
+      "porosity": 0.579544,
+      "height_mm": 5.0,
+      "resolution": 50,
+      "dimensions": {
+        "nx": 50,
+        "ny": 50,
+        "nz": 50
+      },
+      "candidate_rank": null,
+      "candidate_seed": 0,
+      "candidate_family": "gyroid_2d"
+    }
+  },
+  "simulation": {
+    "grid": {
+      "shape": [
+        50,
+        50,
+        50
+      ],
+      "voxel_size_mm": 0.1,
+      "domain_size_mm": [
+        5.0,
+        5.0,
+        5.0
+      ],
+      "porosity": 0.579544
+    },
+    "boundary_conditions": {
+      "inlet_pressure_pa": 102325.0,
+      "outlet_pressure_pa": 101325.0,
+      "pressure_drop_pa": 1000.0,
+      "fluid_density_kg_m3": 1000.0,
+      "fluid_viscosity_pa_s": 0.001,
+      "flow_direction": "z",
+      "matched_conditions": true
+    },
+    "solver": {
+      "type": "pressure_poisson",
+      "method": "finite_difference",
+      "converged": true,
+      "iterations": 1,
+      "solve_time_s": 168.94705200195312,
+      "tolerance": 1e-06
+    },
+    "config": {
+      "mode": "full_gyroid_pilot",
+      "family": "gyroid_2d"
+    }
+  },
+  "inclusion_gates": {
+    "solid_fraction_z25": 0.434,
+    "solid_frac_gate": [
+      0.414,
+      0.453
+    ],
+    "porosity_gate_pass": true,
+    "transverse_max_ratio_z25": 2.315069198402567,
+    "transverse_gate_pass": true
+  },
+  "metrics": {
+    "simulated_quantities": {
+      "pressure_drop": {
+        "pressure_drop_pa": 1000.0,
+        "inlet_pressure_pa": 102325.0,
+        "outlet_pressure_pa": 101325.0,
+        "label": "SIMULATED",
+        "method": "pressure_poisson_solver"
+      },
+      "flow_rate": {
+        "flow_rate_m3_s": 0.001886069340495934,
+        "flow_rate_lpm": 113.16416042975604,
+        "label": "SIMULATED",
+        "method": "velocity_integration"
+      },
+      "velocity_statistics": {
+        "v_mean_m_s": 159.62274295149382,
+        "v_max_m_s": 478.8874837736634,
+        "v_min_m_s": 12.840181240608217,
+        "v_std_m_s": 55.37282609104128,
+        "vz_mean_m_s": 142.77124624370546,
+        "label": "SIMULATED",
+        "method": "velocity_field_statistics"
+      },
+      "flow_uniformity": {
+        "coefficient_of_variation": 0.36573884546741914,
+        "maldistribution_factor": 2.9951460932078935,
+        "label": "SIMULATED",
+        "method": "velocity_distribution_analysis"
+      },
+      "hydraulic_resistance": {
+        "hydraulic_resistance_pa_s_m3": 530203.2001310483,
+        "label": "SIMULATED",
+        "method": "resistance_from_dp_and_q"
+      }
+    },
+    "geometric_quantities": {
+      "porosity": 0.579544,
+      "domain_volume_mm3": 125.0,
+      "fluid_volume_mm3": 72.443,
+      "label": "GEOMETRIC",
+      "method": "geometry_analysis"
+    },
+    "proxy_quantities": {
+      "note": "Thermal simulation not yet implemented in Stage 4",
+      "label": "NOT_COMPUTED"
+    },
+    "solver_info": {
+      "converged": true,
+      "iterations": 1,
+      "solve_time_s": 168.94705200195312
+    }
+  }
+}

@@ -1,6 +1,11 @@
 """3D channel geometry generators.
 
 Promotes 2D channel families to 3D extruded geometry.
+
+Flow axis convention (from stage4_sim.mesh_or_grid.get_inlet_outlet_faces):
+  Inlet = [:, :, 0]  (axis-2 index 0)
+  Outlet = [:, :, -1] (axis-2 index -1)
+  Flow direction: axis 2 (x-direction), from index 0 to index -1.
 """
 
 import numpy as np
@@ -13,9 +18,15 @@ def generate_straight_channel_3d(
     height_mm: float = 2.0,
     resolution: int = 100
 ) -> Tuple[np.ndarray, Dict[str, Any]]:
-    """Generate 3D straight channel geometry.
+    """Generate 3D straight channel geometry aligned with the flow axis.
+
+    Channels are parallel slabs defined by their position along axis 0 (z),
+    spanning the full extent of axis 1 (y) and axis 2 (x / flow direction).
+    This ensures fluid connectivity from inlet (x=0) to outlet (x=-1).
     
-    Extrudes 2D straight channel pattern in Z direction.
+    FIX (2026-04-29): Previously channels were created as slabs at specific
+    axis-2 (x) positions, which placed them PERPENDICULAR to the flow axis
+    defined in mesh_or_grid.get_inlet_outlet_faces. Channels had zero flow.
     
     Args:
         params: Parameters dict (must have 'num_channels', 'channel_width_fraction')
@@ -37,18 +48,18 @@ def generate_straight_channel_3d(
     volume = np.zeros((nz, ny, nx), dtype=np.uint8)
     
     # Calculate channel pitch
-    pitch = nx / num_channels
+    pitch = nz / num_channels
     channel_width_px = int(pitch * channel_width_fraction)
     
-    # Generate channels in X direction, extruded through Z
+    # Generate channels as slabs in axis 0 (z), spanning all y and all x (flow axis)
     for i in range(num_channels):
         center = int((i + 0.5) * pitch)
         half_width = channel_width_px // 2
-        x_start = max(0, center - half_width)
-        x_end = min(nx, center + half_width)
+        z_start = max(0, center - half_width)
+        z_end = min(nz, center + half_width + 1)
         
-        # Extrude through all Z layers
-        volume[:, :, x_start:x_end] = 1
+        # Slab spans all y (axis 1) and all x (axis 2 = flow direction)
+        volume[z_start:z_end, :, :] = 1
     
     metadata = {
         'type': '3d_straight_channel',
