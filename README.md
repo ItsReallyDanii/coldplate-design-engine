@@ -1,265 +1,364 @@
 # coldplate-design-engine
 
-**Status:** Stage 0 complete; Stage 0.5 planning complete; **Stage 1 complete and operational; Stage 2 complete and PASS; Stage 3 complete and PASS; Stage 4 complete and PASS; Stage 5 complete and PASS; Stage 6 complete and PASS; Stage 7 readiness assessed - CONDITIONAL PROCEED.** Literature population in progress (does not block execution).
+![Status](https://img.shields.io/badge/status-stage--7--conditional--proceed-orange)
+![Python](https://img.shields.io/badge/python-3.x-blue)
+![Validation](https://img.shields.io/badge/validation-claim--audited-blueviolet)
+![Hardware](https://img.shields.io/badge/hardware--validation-not--yet--performed-lightgrey)
 
-Inverse design of internal porous and channel architectures for direct-to-chip liquid-cooling cold plates, evaluated against matched channel and TPMS baselines. This repository is independent of Thermal-Sponge; `thermal_sponge_ref/` is reference material only.
+**A stage-gated inverse-design pipeline for TPMS-inspired liquid cold plates.**
 
-**Tracked design hypothesis:** Functionally graded internal structures with spatially varying porosity fields are now tracked as a candidate design direction. This approach is not yet validated; it represents a hypothesis that non-uniform thermal and mechanical loading may benefit from graded internal structure. The target specification remains unchanged, and graded structures will be evaluated against uniform and segmented TPMS baselines when Stage 2-4 simulations become available.
+`coldplate-design-engine` explores internal porous and channel architectures for direct-to-chip liquid cooling. The project implements a staged workflow from target specification and 2D surrogate screening through inverse design, 3D geometry generation, flow simulation, thermal screening, structural/manufacturability screening, and bench-readiness planning.
 
-## Repository layout
+The current result is **not hardware validation**. It is a bounded, claim-audited computational pipeline that produces candidate geometries, screening metrics, and a Stage 7 prototype-readiness assessment.
 
-- `docs/` — target, baseline, stage-gate, and literature-review specifications.
-- `baselines/` — reference geometry families (`channels/`, `tpms/`, `topology_opt/`).
-- `src/` — staged code implementations (`stage1_2d/`, `stage2_inverse/`, `stage3_geometry/`, `stage35_physical/`, `stage4_sim/`, `stage5_thermal/`, `stage6_structural/`).
-- `claim_audit_v2/` — traceability for quantitative claims.
-- `data/`, `results/` — inputs and outputs for future stages.
-- `thermal_sponge_ref/` — literature reference archive; not shared code or results.
+---
 
-## Staged roadmap (summary)
+## Current status
 
-| Stage | Focus | Status |
-|-------|-------|--------|
-| 0 | Scaffold, target, and baseline documentation | Complete |
-| 0.5 | Literature review and constraint locking | Complete |
-| 1 | 2-D surrogate modeling and parameter sweeps | **Complete** |
-| 2 | Inverse-design formulation | **Complete (PASS)** |
-| 3 | 3-D geometry generation and meshing | **Complete (PASS)** |
-| 3.5 | Physical-model corrections and validation | Complete |
-| 4 | Flow simulation under matched constraints | **Complete (PASS)** |
-| 5 | Thermal validation (flow-informed) | **Complete (PASS)** |
-| 6 | Structural and manufacturability screening | **Complete (PASS)** |
-| 7 | Prototype fabrication and bench testing | **Readiness: CONDITIONAL PROCEED** |
-| 8 | System integration and reliability screening | Pending |
-| 8 | Release and handoff with audited claims | Pending |
+**Stage 7 readiness: CONDITIONAL PROCEED**
 
-See `docs/stage_gates.md` for detailed gate criteria.
+Stages 1–6 are implemented and documented as PASS/complete under their scoped criteria. Stage 7 has been assessed as **CONDITIONAL PROCEED**, blocked by one critical requirement:
 
-## Stage 1: Quick Start
+> Actual Stage 3 geometry must be loaded into Stage 6 manufacturability screening before any prototype decision is final.
 
-Stage 1 implements 2D baseline geometry generation, metric computation, and parameter sweeps.
+No fabricated prototype has been tested yet. No experimental thermal-hydraulic validation is claimed.
 
-**Run smoke test:**
+---
+
+## Why this exists
+
+Liquid cold plates are constrained by competing objectives:
+
+- maximize heat transfer area
+- preserve flow connectivity
+- reduce hydraulic resistance
+- avoid dead zones
+- satisfy manufacturability limits
+- survive thermal and pressure loading
+
+This repository turns that into a staged design pipeline where every major claim is assigned a scope:
+
+- **GEOMETRIC**
+- **SIMULATED**
+- **FLOW_SIMULATED**
+- **ANALYTICAL**
+- **SCREENING**
+- **NOT_COMPUTED**
+- **NOT_VALIDATED**
+
+The goal is not to pretend screening models are physical proof. The goal is to prevent weak evidence from being promoted into strong claims.
+
+---
+
+## Pipeline overview
+
+```text
+Target specification
+    ↓
+2D surrogate geometry screening
+    ↓
+Inverse design optimization
+    ↓
+3D geometry generation and STL export
+    ↓
+Flow simulation under matched constraints
+    ↓
+Thermal screening with flow-informed coupling
+    ↓
+Structural and manufacturability screening
+    ↓
+Prototype readiness assessment
+```
+
+---
+
+## Stage-gate summary
+
+| Stage | Focus | Implementation | Tests | Status |
+|---|---|---:|---:|---|
+| 0 / 0.5 | Target specification, literature, constraints | Docs | — | Complete |
+| 1 | 2D surrogate screening | 11 modules | 48 | PASS |
+| 2 | Inverse design optimization | 9 modules | 56 | PASS |
+| 3 | 3D geometry generation + STL export | 10 modules | 29 | PASS |
+| 3.5 | Physical corrections / documented modeling updates | Docs | — | Complete |
+| 4 | Flow simulation using Darcy-style screening solver | 10 modules | 24 | PASS |
+| 5 | Thermal screening with flow-informed coupling | 10 modules | 14 | PASS |
+| 6 | Structural + manufacturability screening | 10 modules | 25 | PASS |
+| 7 | Prototype readiness assessment | Docs | — | CONDITIONAL PROCEED |
+
+Total extracted source/test inventory:
+
+- **60 source modules**
+- **206 test functions**
+- **17 test files**
+- staged packages across `stage1_2d` through `stage6_structural`
+
+---
+
+## Implemented design families
+
+Stage 1 and Stage 3 support matched baseline and TPMS-inspired geometry families:
+
+| Family | Type | Notes |
+|---|---|---|
+| Straight channel | Channel baseline | Simple direct-flow baseline |
+| Serpentine channel | Channel baseline | Longer path / increased contact |
+| Pin-fin array | Channel/feature baseline | Discrete internal obstacles |
+| Gyroid | TPMS-inspired | 3D implicit surface generation |
+| Diamond | TPMS-inspired | 3D implicit surface generation |
+| Primitive | TPMS-inspired | 3D implicit surface generation |
+
+Stage 3 promotes selected 2D candidates into 3D geometry and mesh-ready exports.
+
+---
+
+## Key candidate results
+
+Two diamond-family candidates reached Stage 7 readiness assessment.
+
+| Metric | `candidate_01_diamond_2d_s1127` | `candidate_02_diamond_2d_s1045` | Label |
+|---|---:|---:|---|
+| Thermal resistance | 1.0350 K/W | **1.0296 K/W** | SCREENING |
+| Peak temperature | 50.87 °C | **50.74 °C** | SCREENING |
+| Pressure drop | 1000 Pa | 1000 Pa | IMPOSED BC |
+| Flow rate | 105.4 LPM | **108.0 LPM** | SIMULATED / non-physical absolute scale |
+| Combined stress | 32.4 MPa | **32.3 MPa** | ANALYTICAL |
+| Allowable stress | 92 MPa | 92 MPa | Literature material property |
+| Margin of safety | 1.84× | **1.85×** | ANALYTICAL |
+| Deflection | 0.00002 mm | 0.00002 mm | ANALYTICAL |
+| Temperature uniformity CV | 12.2% | **12.1%** | SCREENING |
+| Fluid connectivity | **97.4%** | 97.3% | GEOMETRIC |
+| Manufacturability | UNKNOWN | UNKNOWN | Requires real geometry screening |
+| Overall status | CONDITIONAL | CONDITIONAL | Stage 7 |
+
+**Priority candidate:** `candidate_02_diamond_2d_s1045`
+
+It is the current preferred candidate because it has the best thermal resistance, lowest peak temperature, highest simulated flow rate, and slightly higher analytical structural margin within the screened set.
+
+---
+
+## What is proven vs not proven
+
+### Supported by the repository
+
+| Claim | Status |
+|---|---|
+| The stage-gated pipeline runs from 2D screening through structural/manufacturability assessment | Supported |
+| Genetic algorithm inverse design improves proxy objective score over random search | Supported |
+| Six baseline/TPMS geometry families are implemented | Supported |
+| Two diamond candidates passed analytical structural screening | Supported |
+| Candidate 02 is the current best screened candidate | Supported |
+| Stage 7 readiness is conditional, not complete | Supported |
+| Claim labels distinguish geometry, simulation, analytical screening, and validation status | Supported |
+
+### Not claimed
+
+| Claim | Status |
+|---|---|
+| Hardware validation has been completed | Not supported |
+| Fabricated prototype exists | Not supported |
+| Bench testing has been performed | Not supported |
+| Full Navier-Stokes CFD is implemented | Not supported |
+| Full conjugate heat transfer is implemented | Not supported |
+| Fluid energy equation is solved | Not supported |
+| Full FEA structural validation is implemented | Not supported |
+| Real-geometry manufacturability is confirmed | Not supported |
+| Production readiness is established | Not supported |
+
+---
+
+## Solver and model boundaries
+
+| Stage | Method | What it is | What it is not |
+|---|---|---|---|
+| Stage 4 flow | Darcy-style permeability solver | Comparative flow screening | Full Navier-Stokes CFD |
+| Stage 5 thermal | Steady-state conduction + flow-informed convective coupling | Thermal screening | Full conjugate heat transfer |
+| Stage 6 structural | Analytical stress and manufacturability formulas | Plausibility screening | Finite element analysis |
+| Stage 7 readiness | Documentation and decision gate | Prototype-readiness planning | Experimental validation |
+
+These boundaries are intentional. The repository is designed to keep early-stage engineering claims honest.
+
+---
+
+## Quick start
+
+Install dependencies:
+
 ```bash
 pip install -e .
+pip install -r requirements-dev.txt
+```
+
+Run Stage 1 smoke test:
+
+```bash
 python src/stage1_2d/cli.py smoke
 ```
 
-**Run parameter sweep:**
-```bash
-python src/stage1_2d/cli.py sweep configs/stage1_default.yaml
-```
+Run Stage 2 inverse-design comparison:
 
-**Run tests:**
-```bash
-pip install -r requirements-dev.txt
-pytest tests/test_stage1_*.py -v
-```
-
-**See full execution guide:** `docs/stage1_execution.md`
-
-**See metric definitions:** `docs/stage1_metric_definitions.md`
-
-**Baseline families implemented:**
-- Straight channels
-- Serpentine channels
-- Pin-fin arrays
-- TPMS-adjacent 2D proxies (gyroid-like, diamond-like, primitive-like)
-
-**IMPORTANT:** Stage 1 metrics are screening tools only. Proxy metrics are clearly labeled and do NOT replace CFD/FEA. See metric definitions for limitations.
-
-## Stage 2: Quick Start
-
-Stage 2 implements inverse-design optimization on top of Stage 1 proxy metrics.
-
-**Run smoke test:**
-```bash
-python src/stage2_inverse/cli.py smoke
-```
-
-**Run full comparison (random search vs genetic algorithm):**
 ```bash
 python src/stage2_inverse/cli.py compare configs/stage2_default.yaml
 ```
 
-**Run tests:**
-```bash
-pytest tests/test_stage2_*.py -v
-```
+Promote candidates to 3D geometry:
 
-**See full documentation:**
-- `docs/stage2_inverse_design.md` - Problem formulation and objectives
-- `docs/stage2_execution.md` - Execution guide and commands
-
-**Stage 2 Results:**
-- Genetic algorithm achieves **66.19% improvement** over random search
-- Best scores: 2049.64 (GA) vs 1233.31 (random)
-- Validity rates: 67% (GA) vs 9% (random)
-- **Stage 2 gate: PASS**
-
-**IMPORTANT:** Stage 2 operates on Stage 1 proxy metrics only. Results do NOT establish real thermal or hydraulic superiority. CFD validation (Stages 3-4) is required for physical claims.
-
-## Stage 3: Quick Start
-
-Stage 3 promotes top Stage 2 candidates to 3D parametric geometry with mesh-ready exports.
-
-**Run smoke test:**
-```bash
-python src/stage3_geometry/cli.py smoke
-```
-
-**Run full promotion:**
 ```bash
 python src/stage3_geometry/cli.py promote configs/stage3_default.yaml
 ```
 
-**Run tests:**
-```bash
-pytest tests/test_stage3_*.py -v
-```
+Run Stage 4 flow simulation:
 
-**See full documentation:**
-- `docs/stage3_geometry.md` - Stage 3 specification and family mappings
-- `docs/stage3_execution.md` - Execution guide and commands
-
-**Stage 3 Results:**
-- **All 6 baseline families** promote to true 3D geometry
-- TPMS families (gyroid, diamond, primitive) use true 3D implicit surface equations
-- Channel families (straight, serpentine, pin-fin) use 3D extrusion/array generation
-- Geometry exported as STL (mesh-ready) and raw volumes
-- Validation checks confirm connectivity and feature sizes
-- **Stage 3 gate: PASS**
-
-**IMPORTANT:** Stage 3 generates 3D geometry only. Results do NOT establish thermal-hydraulic performance. CFD simulation (Stage 4) is required for flow and thermal claims.
-
-## Stage 4: Quick Start
-
-Stage 4 implements flow simulation validation on Stage 3 geometry. **Flow-only** at this stage; thermal coupling not yet implemented.
-
-**Run smoke test:**
-```bash
-python src/stage4_sim/cli.py smoke
-```
-
-**Run on Stage 3 outputs:**
 ```bash
 python src/stage4_sim/cli.py run results/stage3_geometry results/stage4_sim
 ```
 
-**Run tests:**
-```bash
-pytest tests/test_stage4_*.py -v
-```
+Run Stage 5 thermal screening:
 
-**See full documentation:** `docs/stage4_simulation.md`
-
-**Stage 4 Results:**
-- **Flow simulation operational** on Stage 3 geometry
-- Pressure drop and flow rate computed from actual solver
-- Fair comparison under matched boundary conditions
-- All quantities honestly labeled (SIMULATED vs GEOMETRIC vs NOT_COMPUTED)
-- **Stage 4 gate: PASS**
-
-**IMPORTANT:** Stage 4 provides **flow simulation only**. Thermal simulation not yet implemented. Results enable relative performance ranking but do NOT establish absolute thermal-hydraulic performance. All quantities are clearly labeled.
-
-## Stage 5: Quick Start
-
-Stage 5 implements thermal validation on top of Stage 4 flow simulation.
-
-**Run smoke test:**
-```bash
-python src/stage5_thermal/cli.py smoke
-```
-
-**Run on Stage 4 outputs:**
 ```bash
 python src/stage5_thermal/cli.py run results/stage4_sim_full --output results/stage5_thermal
 ```
 
-**Run tests:**
-```bash
-pytest tests/test_stage5_thermal.py -v
-```
+Run Stage 6 structural/manufacturability screening:
 
-**See full documentation:** `docs/stage5_thermal.md`
-
-**Stage 5 Results:**
-- **Thermal validation operational** on Stage 4 flow results
-- Temperature field computed from steady-state conduction + convection
-- Flow-informed convective coupling using Stage 4 velocity
-- Thermal resistance and peak temperature metrics
-- All quantities honestly labeled (SIMULATED vs FLOW_SIMULATED vs GEOMETRIC)
-- **Stage 5 gate: PASS**
-
-**Smoke test results:**
-- 2 candidates evaluated
-- Best thermal resistance: 1.030 K/W
-- Winner: candidate_02_diamond_2d_s1045
-
-**IMPORTANT:** Stage 5 provides **simplified thermal validation** with flow-informed convection. This is NOT full conjugate heat transfer. Fluid energy equation not solved. Results enable thermal performance ranking under matched conditions but do NOT establish absolute thermal predictions. See documentation for honest limitations.
-
-## Stage 6: Quick Start
-
-Stage 6 implements structural and manufacturability screening on top of Stage 5 thermal results.
-
-**Run smoke test:**
-```bash
-python src/stage6_structural/cli.py smoke
-```
-
-**Run on Stage 5 outputs:**
 ```bash
 python src/stage6_structural/cli.py run results/stage5_thermal --output results/stage6_structural
 ```
 
-**Run tests:**
+Run tests:
+
 ```bash
-pytest tests/test_stage6_structural.py -v
+python -m pytest tests/ -q
 ```
 
-**See full documentation:** `docs/stage6_structural_screening.md`
+---
 
-**Stage 6 Results:**
-- **Structural and manufacturability screening operational**
-- Analytical structural screening (thin-wall, thermal stress, deflection)
-- Manufacturability checks (wall thickness, feature size, trapped volumes)
-- All quantities honestly labeled (ANALYTICAL, STRUCTURAL_SCREENED, MANUFACTURABILITY_SCREENED)
-- **Stage 6 gate: PASS**
+## Repository layout
 
-**IMPORTANT:** Stage 6 provides **screening-level analysis only**, NOT full FEA or production certification. Analytical approximations with conservative assumptions. Results eliminate obviously bad designs but do NOT certify production readiness.
+```text
+coldplate-design-engine/
+├── baselines/
+│   ├── channels/
+│   ├── tpms/
+│   └── topology_opt/
+├── claim_audit_v2/
+├── configs/
+├── data/
+├── docs/
+├── results/
+├── src/
+│   ├── stage1_2d/
+│   ├── stage2_inverse/
+│   ├── stage3_geometry/
+│   ├── stage35_physical/
+│   ├── stage4_sim/
+│   ├── stage5_thermal/
+│   └── stage6_structural/
+├── tests/
+├── STAGE6_INDEPENDENT_VERIFICATION.md
+├── STAGE7_READINESS_VERDICT.md
+├── bench_claim.md
+├── bench_measurement_plan.md
+├── bench_pass_fail.md
+└── README.md
+```
 
-## Stage 7: Readiness Status
+---
 
-**Status: CONDITIONAL PROCEED**
+## Main evidence files
 
-Stage 7 benchtop validation readiness has been assessed. See `STAGE7_READINESS_VERDICT.md` for full analysis.
+| File | Purpose |
+|---|---|
+| `docs/target_spec.md` | Target, scope, and non-goals |
+| `docs/stage_gates.md` | Stage-gate plan and pass/kill criteria |
+| `docs/stage2_verdict.md` | Stage 2 inverse-design verdict |
+| `docs/stage3_verdict.md` | Stage 3 geometry verdict |
+| `docs/STAGE4_VERDICT.md` | Flow simulation scope and verdict |
+| `docs/STAGE5_VERDICT.md` | Thermal screening scope and verdict |
+| `docs/STAGE6_VERDICT.md` | Structural/manufacturability screening verdict |
+| `STAGE6_INDEPENDENT_VERIFICATION.md` | Independent verification of Stage 6 |
+| `STAGE7_READINESS_VERDICT.md` | Stage 7 conditional readiness assessment |
+| `bench_claim.md` | Earned/testable/dishonest claim hierarchy |
+| `bench_measurement_plan.md` | Proposed bench validation procedure |
+| `bench_hidden_assumptions.md` | Known modeling assumptions |
+| `claim_audit_v2/` | Claim traceability and audit material |
 
-**Quick summary:**
-- **Verdict:** CONDITIONAL PROCEED
-- **Candidates evaluated:** 2 (both diamond_2d family)
-- **Structural performance:** Both PASS with excellent margins (1.8×)
-- **Thermal performance:** Best = 1.030 K/W (candidate_02)
-- **Hydraulic performance:** Both reasonable (ΔP = 1000 Pa)
-- **Manufacturability:** UNKNOWN (smoke test used synthetic geometry)
+---
 
-**Critical finding:** Stage 6 smoke test failures are due to synthetic geometry reconstruction, NOT real design issues. Real geometry must be evaluated before prototype decision.
+## Stage 7 readiness
 
-**Prerequisite (1-2 days):**
-1. Load actual Stage 3 voxel data into Stage 6
-2. Re-run screening with real geometry
-3. Verify ≥1 candidate passes manufacturability
+Stage 7 is currently **CONDITIONAL PROCEED**.
 
-**Then proceed with:**
-- Fabrication planning (AM vendor, Aluminum 6061-T6)
-- Test facility setup (closed-loop liquid cooling)
-- Budget approval (~$3k-10k per prototype + testing)
+The two screened diamond candidates are plausible enough to justify the next readiness step, but the current blocker is real-geometry manufacturability.
 
-**Timeline:** 8-10 weeks from geometry screening to benchtop test results
+Required before prototype decision:
 
-**See full readiness verdict:** `STAGE7_READINESS_VERDICT.md` (27k words)  
-**See executive summary:** `docs/stage7_readiness_executive_summary.md`
+1. Load actual Stage 3 voxel geometry into Stage 6.
+2. Re-run structural/manufacturability screening on real geometry.
+3. Verify at least one candidate passes manufacturability.
+4. Generate final fabrication-ready geometry.
+5. Proceed to bench planning only after the real-geometry gate passes.
 
-**IMPORTANT:** Benchtop validation targets **directional agreement** (within 2-3× of simulation), NOT quantitative accuracy. Success means validation for refinement, NOT production certification.
+Planned bench validation target:
 
-## Contributing
+- directional agreement, not quantitative production certification
+- thermal agreement within broad bounds
+- hydraulic agreement within broad bounds
+- no leak or structural failure
+- evidence suitable for model refinement
 
-Follow the claim audit protocol in `claim_audit_v2/` before adding any quantitative performance claims. All claims must be traceable to peer-reviewed literature or internally verified simulation/bench data.
+---
+
+## Technical paper target
+
+This repository is being prepared as a short technical methods paper:
+
+> **A Stage-Gated Inverse-Design Pipeline for TPMS-Inspired Liquid Cold Plates**
+
+The paper will frame this project as a bounded engineering workflow, not a finished hardware product.
+
+---
+
+## Citation
+
+Suggested citation:
+
+```text
+Sleiman, D. (2026). coldplate-design-engine: A Stage-Gated Inverse-Design Pipeline for TPMS-Inspired Liquid Cold Plates. GitHub repository.
+https://github.com/ItsReallyDanii/coldplate-design-engine
+```
+
+---
+
+## Claim policy
+
+Do not add or promote quantitative performance claims unless they are traceable to one of:
+
+1. internally verified simulation output,
+2. documented analytical screening,
+3. committed benchmark/test output,
+4. peer-reviewed literature,
+5. future experimental bench data.
+
+Simulation results must remain labeled as simulation or screening results. Analytical screening must not be described as FEA. Stage 7 conditional readiness must not be described as hardware validation.
+
+---
+
+## Current verdict
+
+`coldplate-design-engine` is a serious stage-gated engineering research artifact.
+
+It has:
+
+- implemented staged design logic,
+- multiple geometry families,
+- inverse-design optimization,
+- 3D TPMS geometry generation,
+- flow and thermal screening,
+- structural/manufacturability checks,
+- claim-audited documentation,
+- and a clear next gate toward bench validation.
+
+It has **not** yet produced experimental hardware validation.
+
+That distinction is the project’s strength.
